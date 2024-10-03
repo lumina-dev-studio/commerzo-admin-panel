@@ -56,7 +56,7 @@ const ProductTable = () => {
             className="w-[220px] h-[50px]  py-3 font-bold text-blue-600 text-[14px] bg-white hover:text-white hover:bg-blue-600 rounded-lg border-blue-600 border hover:border-blue-500 hover:shadow inline-flex space-x-2 items-center justify-center"
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <div className=" flex gap-2 items-center"><FiPlus className=" text-[20px]" /> <p>Add New</p>
+            <div className=" flex gap-2 items-center"><FiPlus className=" text-[20px]" /> <p> Add New</p>
             
             </div>
           </button>
