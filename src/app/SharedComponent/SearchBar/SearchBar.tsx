@@ -1,20 +1,20 @@
 const SearchBar = () => {
   return (
     <div>
-      <div className="flex rounded-md border-2  w-full overflow-hidden max-w-md mx-auto font-[sans-serif]">
+      <div className="flex rounded-xl border border-gray-200  w-full overflow-hidden max-w-md mx-auto font-[sans-serif]">
       <input 
         type="email" 
-        placeholder="Search Something..." 
-        className="w-full outline-none bg-white text-gray-600 text-sm px-4 py-3" 
+        placeholder="Search here..." 
+        className="w-full outline-none bg-white text-gray-600 text-sm px-4 py-3 font-light " 
       />
       <button 
         type="button" 
         className="flex items-center justify-center px-5"
       >
-        <svg 
+        <svg  
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 192.904 192.904" 
-          width="16px" 
+          width="17px" 
           className="fill-gray"
         >
           <path
