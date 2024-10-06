@@ -1,4 +1,5 @@
-import Table from "@/app/SharedComponent/Table/Table";
+import Table from "@/SharedComponent/Table/Table";
+
 
 
 const ProductList = () => {

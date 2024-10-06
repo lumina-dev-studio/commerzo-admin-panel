@@ -2,7 +2,7 @@ import AddProduct from "@/components/Ecommerce/AddProduct/AddProduct";
 
 const page = () => {
   return (
-    <div>
+    <div className=" my-14">
       <AddProduct/>
     </div>
   );

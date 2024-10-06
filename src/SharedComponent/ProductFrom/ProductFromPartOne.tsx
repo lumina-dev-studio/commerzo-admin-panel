@@ -18,7 +18,7 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 
 
-const AddProductFromPartOne = () => {
+const ProductFromPartOne = ({productData,condition}:any) => {
   return (
     <div>
        <Card className="w-full shadow-none">
@@ -32,14 +32,14 @@ const AddProductFromPartOne = () => {
         <div className="flex flex-col space-y-1.5">
             <Label htmlFor="name" className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>  Product name 
             <span className="text-red-500 text-bold text-10px">*</span></Label>
-            <Input id="name" placeholder="Enter product name" maxLength={20} className=" p-6 rounded-xl" style={{ fontFamily: 'var(--font-inter)' }} required name="productName"/>
+            <Input id="name" placeholder="Enter product name" maxLength={20} className=" p-6 rounded-xl" style={{ fontFamily: 'var(--font-inter)' }} required name="productName" defaultValue={productData?.productName}/>
             <p className=" mt-2"><small className=" text-[12px] text-gray-400" style={{ fontFamily: 'var(--font-inter)' }}>Do not exceed 20 characters when entering the product name.</small></p>
           </div>
         </section>
         <section className=" grid grid-cols-2 gap-5  mt-2">
         <div className="flex flex-col space-y-1.5">
             <Label htmlFor="framework" className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>Category <span className="text-red-500 text-bold text-10px">*</span> </Label>
-            <Select required name="productCategory">
+            <Select required name="productCategory" defaultValue={productData?.productCategory}>
               <SelectTrigger id="framework" className=" p-6 rounded-xl">
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
@@ -52,7 +52,7 @@ const AddProductFromPartOne = () => {
           </div>
         <div className="flex flex-col space-y-1.5">
             <Label htmlFor="framework" className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>Gender  <span className="text-red-500 text-bold text-10px">*</span> </Label>
-            <Select required name="gender">
+            <Select required name="gender" defaultValue={productData?.gender}>
               <SelectTrigger id="framework" className=" p-6 rounded-xl">
                 <SelectValue placeholder="Select gender" />
               </SelectTrigger>
@@ -68,7 +68,7 @@ const AddProductFromPartOne = () => {
 
         <section className=" mt-2">
         <Label htmlFor="framework" className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>Brand   <span className="text-red-500 text-bold text-10px">*</span> </Label>
-            <Select required name="brand">
+            <Select required name="brand" defaultValue={productData?.brand}>
               <SelectTrigger id="framework" className=" p-6 rounded-xl mt-2">
                 <SelectValue placeholder="Select brand " />
               </SelectTrigger>
@@ -84,7 +84,7 @@ const AddProductFromPartOne = () => {
         <section className=" mt-2">
 
         <Label htmlFor="framework" className="font-bold text-[14px] text-gray-700  " style={{ fontFamily: 'var(--font-inter)' }}>Description    <span className="text-red-500 text-bold text-10px">*</span> </Label>
-        <Textarea name="description" required maxLength={100} placeholder=" Description " className=" h-[200px] rounded-xl p-4 mt-2" style={{ fontFamily: 'var(--font-inter)' }} />
+        <Textarea name="description" required maxLength={100} placeholder=" Description " className=" h-[200px] rounded-xl p-4 mt-2" style={{ fontFamily: 'var(--font-inter)' }} defaultValue={productData?.description} />
 
         <p className=" mt-2 mb-5">
         <small className=" text-[12px] text-gray-400" style={{ fontFamily: 'var(--font-inter)' }}>Do not exceed 100 characters when entering the product name.</small>
@@ -101,4 +101,4 @@ const AddProductFromPartOne = () => {
   );
 };
 
-export default AddProductFromPartOne;
+export default ProductFromPartOne;

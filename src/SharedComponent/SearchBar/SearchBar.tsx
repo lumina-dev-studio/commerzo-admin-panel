@@ -1,7 +1,12 @@
+import { useAppSelector } from "@/Redux/hooks";
+import { RootState } from "@/Redux/store";
+
 const SearchBar = () => {
+  const isOpen = useAppSelector((state: RootState) => state.navBar.sidebarToggle);
+
   return (
     <div>
-      <div className="flex rounded-xl border border-gray-200  w-full overflow-hidden max-w-md mx-auto font-[sans-serif]">
+      <div className={`${!isOpen?'w-full':"max-w-md"} flex rounded-xl border border-gray-200   overflow-hidden  mx-auto font-[sans-serif]`}>
       <input 
         type="email" 
         placeholder="Search here..." 
