@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { setSideBarToggle } from "@/Redux/api/NavBar/navBarSlice";
 
+import { RiMenuUnfold3Fill } from "react-icons/ri";
 const NavBarSidebarButton = () => {
   const dispatch = useDispatch();
     // State to manage sidebar visibility
@@ -22,15 +23,17 @@ const NavBarSidebarButton = () => {
 
 
   return (
-    <button
-      className={`absolute top-0 left-0 p-4 transition-all duration-500 bg-indigo-500 rounded-lg ${
-        isOpen ? 'rotate-180 left-64' : ''
+
+      <button
+      className={`absolute top-0 left-0 mt-2.5 p-4 transition-all duration-500  rounded-lg ${
+        isOpen ? 'rotate-180 left-64 ' : ''
       }`}
       onClick={toggleSidebar}
     >
-      <div className="w-6 h-1 mb-3 -rotate-45 bg-white rounded-lg"></div>
-      <div className="w-6 h-1 rotate-45 bg-white rounded-lg"></div>
+      <RiMenuUnfold3Fill className={`${isOpen=== false?" text-blue-500 bg-red-500":"text-gray-500"}font-bold text-[25px] `} />
+     
     </button>
+ 
   );
 };
 

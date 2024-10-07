@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 
 
-const ImageUploader= ({ oldImages, setImageFiles }:any) => {
+const ImageUploader= ({ oldImages, setImageFiles,condition }:any) => {
   const dropzoneRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   console.log(oldImages,'old')
@@ -49,7 +49,7 @@ const ImageUploader= ({ oldImages, setImageFiles }:any) => {
   return (
     <div>
       <div
-        className="w-full h-full relative border-2 border-gray-300 border-dashed rounded-lg py-6 px-3"
+        className={`${condition==="NewCategory"?"p-20 border-blue-300 rounded-xl":" py-6 px-3 border-gray-300 rounded-lg "} w-full h-full relative border-2  border-dashed  `}
         id="dropzone"
         ref={dropzoneRef}
         onDragOver={handleDragOver}
@@ -63,7 +63,7 @@ const ImageUploader= ({ oldImages, setImageFiles }:any) => {
           onChange={handleInputChange}
           multiple // Allow multiple file uploads
         />
-        <div className="text-center">
+        <div className="text-center w-full">
           <img
             className="mx-auto h-[70px] w-[70px]"
             src="/ImageUploader/Fotolia_128673803_Subscription_Monthly_M-removebg-preview.png"

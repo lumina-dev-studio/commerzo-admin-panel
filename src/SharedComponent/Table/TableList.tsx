@@ -9,8 +9,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import ProductTableList from "./ProductTableList";
+import CategoryTableList from "./CategoryTableList";
 
-const TableList = ({ tableHead, tableData }: any) => {
+
+const TableList = ({ tableHead, tableData,condition }: any) => {
   return (
     <Table>
       <TableHeader>
@@ -27,11 +29,17 @@ const TableList = ({ tableHead, tableData }: any) => {
           ))}
         </TableRow>
       </TableHeader>
-      <TableBody className="space-y-5">
-        {tableData.map((item: any, index: number) => ( <ProductTableList item={item} index={index}/>
+    {condition==="ProductList"&& <TableBody className="space-y-5">
+        {tableData?.map((item: any, index: number) => ( <ProductTableList item={item} index={index}/>
           
         ))}
-      </TableBody>
+      </TableBody>}  
+
+    {condition==="CategoryList"&& <TableBody className="space-y-5">
+        {tableData?.map((item: any, index: number) => ( <CategoryTableList item={item} index={index}/>
+          
+        ))}
+      </TableBody>}  
     </Table>
   );
 };

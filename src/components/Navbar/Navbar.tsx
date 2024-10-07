@@ -20,7 +20,7 @@ const Navbar = () => {
     <div className=" h-20 bg-white grid grid-cols-12  top-0 z-10    fixed ">
        
 <section className={`${!isOpen?"col-span-1": "col-span-2"}  `}>
-   <div className="flex gap-10  items-center h-full">
+   <div className="flex  absolute  items-center h-full">
    {isOpen && <div >
     <h1 className=" text-gray-700 font-bold "> Sass Project Logo</h1>
     </div>}

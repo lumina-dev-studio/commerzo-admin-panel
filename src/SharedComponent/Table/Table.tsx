@@ -16,7 +16,10 @@ import Pagination from "../Pagination/Pagination";
 import Divider from "../Divider/Divider";
 import Link from "next/link";
 import TableList from "./TableList";
-const Table = ({tableHead,tableData}:any) => {
+
+
+
+const Table = ({tableHead,tableData ,condition}:any) => {
   // State to manage the selected value
   const [selectedValue, setSelectedValue] = useState("10"); // Default value is set to "10"
 
@@ -70,7 +73,7 @@ const Table = ({tableHead,tableData}:any) => {
       </section>
 
       <section className=" my-10">
-      <TableList tableHead={tableHead}tableData={tableData}  />
+      <TableList tableHead={tableHead}tableData={tableData} condition={condition}  />
       </section>
 
       <section >
