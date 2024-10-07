@@ -12,7 +12,7 @@ const DashboardDropdown = () => {
   
   return (
     <li>
-      <h3 className=' text-[12px] text-gray-500 opacity-50 font-semibold my-2.5  ms-3' >MAIN HOME</h3>
+      <h3 className=' text-[13px] text-gray-500 opacity-50 font-semibold my-2.5  ms-3' >MAIN HOME</h3>
     <button
       type="button"
       onClick={toggleDropdown} // Toggle dropdown on button click

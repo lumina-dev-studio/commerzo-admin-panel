@@ -11,7 +11,7 @@ const EcommerceDropdown = () => {
 
   return (
     <li>
-           <h3 className=' text-[12px] text-gray-500 opacity-50  font-bold mb-2.5 mt-6  ms-3' >ALL PAGE</h3>
+           <h3 className=' text-[13px] text-gray-500 opacity-50  font-bold mb-2.5 mt-6  ms-3' >ALL PAGE</h3>
       <button
         type="button"
         onClick={toggleDropdown} // Toggle dropdown on button click

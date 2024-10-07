@@ -5,7 +5,7 @@ import { LuDatabase } from "react-icons/lu";
 const ComponentsDropdown = () => {
     return (
     <div>
-        <h3 className=' text-[12px] text-gray-500 opacity-50  font-bold mb-2.5 mt-5 ms-3' >COMPONENTS</h3>
+        <h3 className=' text-[13px] text-gray-500 opacity-50  font-bold mb-2.5 mt-5 ms-3' >COMPONENTS</h3>
     <Link href="#"
           type="button"
          
@@ -14,7 +14,7 @@ const ComponentsDropdown = () => {
        
          <LuDatabase className=" text-[20px] font-semibold  hover:text-blue-500" />
     
-    <span className="flex-1 ml-3 text-left whitespace-nowrap text-[15px] font-semibold hover:text-blue-500" style={{ fontFamily: 'var(--font-inter)' }}>Gallery</span>
+    <span className="flex-1 ml-3 text-left whitespace-nowrap text-[15px] font-semibold hover:text-blue-500" style={{ fontFamily: 'var(--font-inter)' }}>Components</span>
        
         
         </Link>
