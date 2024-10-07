@@ -11,6 +11,17 @@ body {
     text-wrap: balance;
   }
 }
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
 
 @layer base {
   :root {
@@ -67,6 +78,8 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
+
+
 
 @layer base {
   * {

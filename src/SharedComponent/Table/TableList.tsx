@@ -22,7 +22,7 @@ const TableList = ({ tableHead, tableData,condition }: any) => {
               key={index}
               style={{ fontFamily: "var(--font-inter)" }}
               className={`text-[15px] bg-gray-100 p-3 text-gray-900 font-bold 
-              ${index === 1 ? "w-[220px] rounded-s-xl" : ""}`}
+              ${index === 1 ? "w-[220px] " : ""}`}
             >
               {head}
             </TableHead>
