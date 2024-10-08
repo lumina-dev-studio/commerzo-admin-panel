@@ -1,32 +1,39 @@
 import Link from "next/link";
-import { useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { BsDiamond } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { RootState } from "@/Redux/store";
+import { useAppSelector } from "@/Redux/hooks";
+import { setDropDownMenuToggle } from "@/Redux/api/SideBar/sideBarSlice";
+
 const EcommerceDropdown = () => {
-  const [dropdown, setDropdown] = useState(false);
+  const dispatch = useDispatch();
+  const dropDown = useAppSelector((state: RootState) => state.sideBar.dropDownMenuToggle);
 
   const toggleDropdown = () => {
-    setDropdown(!dropdown);
+    // Toggle the dropdown state for "Ecommerce"
+    if (dropDown === "Ecommerce") {
+      dispatch(setDropDownMenuToggle(""));
+    } else {
+      dispatch(setDropDownMenuToggle("Ecommerce"));
+    }
   };
 
   return (
     <li>
-           <h3 className=' text-[13px] text-gray-500 opacity-50  font-bold mb-2.5 mt-6  ms-3' >ALL PAGE</h3>
+      <h3 className="text-[13px] text-gray-500 opacity-50 font-bold mb-2.5 mt-6 ms-3">ALL PAGE</h3>
       <button
         type="button"
         onClick={toggleDropdown} // Toggle dropdown on button click
-        className="flex hover:text-blue-500 items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-50  dark:text-white dark:hover:bg-gray-700"
+        className={`${dropDown === "Ecommerce" && "bg-blue-100 bg-opacity-70 hover:bg-blue-100"} p-3 flex hover:text-blue-500 items-center w-full text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-50 dark:text-white dark:hover:bg-gray-700`}
       >
-     
-       <FiShoppingCart className=" text-[20px] font-semibold  hover:text-blue-500" />
-
-<span className="flex-1 ml-3 text-left whitespace-nowrap text-[15px] font-semibold hover:text-blue-500" style={{ fontFamily: 'var(--font-inter)' }}>Ecommerce</span>
-     
+        <FiShoppingCart className={`${dropDown === "Ecommerce" && "text-blue-500"} text-[20px] font-semibold hover:text-blue-500`} />
+        <span className={`${dropDown === "Ecommerce" && "text-blue-500"} flex-1 ml-3 text-left whitespace-nowrap text-[15px] font-semibold hover:text-blue-500`} style={{ fontFamily: 'var(--font-inter)' }}>
+          Ecommerce
+        </span>
         <svg
-          className={`w-6 h-6 transition-transform duration-200 ${
-            dropdown ? "rotate-180" : ""
-          }`} // Rotate icon when dropdown is open
-          fill="currentColor"
+          className={`w-6 h-6 transition-transform duration-200 ${dropDown === "Ecommerce" ? "rotate-180" : ""}`}
+          fill={`${dropDown === "Ecommerce" ? "rgb(59 130 246)" : "currentColor"}`}
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -37,34 +44,34 @@ const EcommerceDropdown = () => {
           ></path>
         </svg>
       </button>
-      <ul className={`${dropdown ? "block" : "hidden"} py-2 space-y-2`}>
+      <ul className={`${dropDown === "Ecommerce" ? "block" : "hidden"} py-2 space-y-2`}>
         <li>
           <Link
-            href="http://localhost:3000/ecommerce"
-            className="flex items-center w-full p-2  transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600  text-[15px] font-semibold hover:text-blue-500" style={{ fontFamily: 'var(--font-inter)' }}
+            href="/ecommerce"
+            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            style={{ fontFamily: 'var(--font-inter)' }}
           >
-           <BsDiamond className=" text-[10px] opacity-50 mr-2" />
-           Add Product
+            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Add Product
           </Link>
         </li>
         <li>
-        <Link
-            href="http://localhost:3000/ecommerce/productList"
-            className="flex items-center w-full p-2   transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11  text-gray-600  text-[15px] font-semibold hover:text-blue-500" style={{ fontFamily: 'var(--font-inter)' }}
-          
+          <Link
+            href="/ecommerce/productList"
+            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            style={{ fontFamily: 'var(--font-inter)' }}
           >
-           <BsDiamond className=" text-[10px] opacity-50 mr-2" /> Product List
-            </Link>
+            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Product List
+          </Link>
         </li>
         <li>
-        <Link
-            href="http://localhost:3000/ecommerce/updateProduct"
-            className="flex items-center w-full p-2  transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11  text-gray-600  text-[15px] font-semibold hover:text-blue-500" style={{ fontFamily: 'var(--font-inter)' }}
+          <Link
+            href="/ecommerce/updateProduct"
+            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            style={{ fontFamily: 'var(--font-inter)' }}
           >
-         <BsDiamond className=" text-[10px] opacity-50 mr-2" />   Update Product
-            </Link>
+            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Update Product
+          </Link>
         </li>
-      
       </ul>
     </li>
   );

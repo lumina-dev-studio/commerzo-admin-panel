@@ -1,11 +1,12 @@
 import {
-  Table,
-  TableBody,
+ 
   TableCell,
-  TableHead,
-  TableHeader,
+ 
   TableRow,
 } from "@/components/ui/table";
+import { IoEyeOutline } from "react-icons/io5";
+import { LuPenLine } from "react-icons/lu";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 const ProductTableList = ({item,index}:any) => {
   return (
@@ -57,6 +58,31 @@ const ProductTableList = ({item,index}:any) => {
               <span className="bg-orange-50 text-red-500 p-1.5 rounded-md">
                 {item?.Stock}
               </span>
+            </TableCell>
+            <TableCell
+              className="text-[13px] font-medium text-gray-600 p-3"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+              {item?.StartDate}
+            </TableCell>
+            <TableCell
+              className="text-[13px] font-medium text-gray-600 p-3"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
+
+                <div className=" flex gap-5 items-center">
+                 <section>
+                    <IoEyeOutline className=" text-blue-500 text-[20px] cursor-pointer"/>
+                 </section>
+                 <section>
+                    <LuPenLine className=" text-green-500 text-[20px] cursor-pointer"/>
+                 </section>
+                 <section>
+                    <RiDeleteBinLine className=" text-red-500 text-[20px] cursor-pointer"/>
+                 </section>
+               
+
+                </div>
             </TableCell>
           </TableRow>
   );

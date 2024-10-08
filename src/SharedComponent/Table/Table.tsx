@@ -14,16 +14,30 @@ import { BsCupHot } from "react-icons/bs";
 import { FiPlus } from "react-icons/fi";
 import Pagination from "../Pagination/Pagination";
 import Divider from "../Divider/Divider";
-import Link from "next/link";
-import TableList from "./TableList";
 
+import TableList from "./TableList";
+import { useRouter } from "next/navigation";
+
+import { PiFileTextLight } from "react-icons/pi";
 
 
 const Table = ({tableHead,tableData ,condition}:any) => {
   // State to manage the selected value
   const [selectedValue, setSelectedValue] = useState("10"); // Default value is set to "10"
 
-  
+  const router=useRouter();
+  const routeHandler=()=>{
+   if(condition==="ProductList"){
+    router.push("/ecommerce")
+   }
+   if(condition==="CategoryList"){
+    router.push("/category/newCategory")
+   }
+   if(condition==="Attributes"){
+    router.push("/attributes/addAttributes")
+   }
+
+  }
 
   return (
     <div className=' bg-white p-7 rounded-xl mt-5'>
@@ -61,14 +75,15 @@ const Table = ({tableHead,tableData ,condition}:any) => {
         </div>
         
         <div className=" flex justify-end col-span-3">
-          <Link href={'/ecommerce'}
-            className="w-[210px] h-[50px]  py-3 font-bold text-blue-600 text-[14px] bg-white hover:text-white hover:bg-blue-600 rounded-lg border-blue-600 border hover:border-blue-500 hover:shadow inline-flex space-x-2 items-center justify-center"
+          <button onClick={routeHandler}
+   
+            className="w-[200px] h-[50px]  py-3 font-bold text-blue-600 text-[14px] bg-white hover:text-white hover:bg-blue-600 rounded-xl border-blue-600 border hover:border-blue-500 hover:shadow inline-flex space-x-2 items-center justify-center"
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <div className=" flex gap-2 items-center"><FiPlus className=" text-[20px]" /> <p> Add new</p>
+            <div className=" flex gap-2 items-center">{condition==="OrderList"? <PiFileTextLight className=" text-[20px]"/>:<FiPlus className=" text-[20px]" /> }<p>{condition==="OrderList"? "Export all order":"Add new"} </p>
             
             </div>
-          </Link>
+          </button>
         </div>
       </section>
 
