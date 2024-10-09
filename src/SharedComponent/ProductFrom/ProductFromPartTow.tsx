@@ -109,7 +109,7 @@ console.log(imageFiles)
                   </SelectTrigger>
                   <SelectContent position="popper">
                     {["EU-38.5", "EU-39", "EU-40", "EU-41", "EU-42", "EU-43", "EU-44", "EU-50"].map((size) => (
-                      <SelectItem key={size} value={size}>{size}</SelectItem>
+                      <SelectItem className=" hover:bg-blue-500 hover:text-white" key={size} value={size}>{size}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -167,7 +167,7 @@ console.log(imageFiles)
               <div>
                 <button
                   type="submit"
-                  className="w-full py-3 font-bold text-white text-[14px] bg-blue-500 hover:text-blue-500 hover:bg-white rounded-lg border-blue-500 border hover:border-blue-500 hover:shadow inline-flex space-x-2 items-center justify-center"
+                  className="w-full py-3 font-bold text-white text-[14px] bg-blue-500 hover:text-blue-500 hover:bg-white rounded-xl  border-blue-500 border hover:border-blue-500 hover:shadow inline-flex space-x-2 items-center justify-center"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   <span>Add product</span>
@@ -175,7 +175,7 @@ console.log(imageFiles)
               </div>
               <div>
                 <button
-                  className="w-full py-3 font-bold text-blue-500 text-[14px] bg-white hover:text-white hover:bg-blue-500 rounded-lg border-blue-500 border hover:border-blue-500 hover:shadow inline-flex space-x-2 items-center justify-center"
+                  className="w-full py-3 font-bold text-blue-500 text-[14px] bg-white hover:text-white hover:bg-blue-500 rounded-xl border-blue-500 border hover:border-blue-500 hover:shadow inline-flex space-x-2 items-center justify-center"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   <span>Save Product</span>
@@ -183,7 +183,7 @@ console.log(imageFiles)
               </div>
               <div>
                 <button
-                  className="w-full py-3 font-bold text-gray-500 text-[14px] bg-gray-50 hover:text-white hover:bg-blue-500 rounded-lg border-gray-200 border hover:border-blue-500 hover:shadow inline-flex space-x-2 items-center justify-center"
+                  className="w-full py-3 font-bold text-gray-500 text-[14px] bg-gray-50 hover:text-white hover:bg-blue-500 rounded-xl border-gray-200 border hover:border-blue-500 hover:shadow inline-flex space-x-2 items-center justify-center"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
                   <span>Schedule</span>

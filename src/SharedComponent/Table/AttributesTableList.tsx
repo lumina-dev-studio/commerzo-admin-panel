@@ -12,7 +12,7 @@ import {
 
 const AttributesTableList = ({item,index}:any) => {
   return (
-    <TableRow key={index} className={index % 2 === 1 ? "bg-gray-100" : ""}>
+    <TableRow key={index} className={index % 2 === 1 ? "bg-gray-100 border-none" : " border-none"}>
             <TableCell
               style={{ fontFamily: "var(--font-inter)", padding: "0" }}
               className="p-0 rounded-s-xl"

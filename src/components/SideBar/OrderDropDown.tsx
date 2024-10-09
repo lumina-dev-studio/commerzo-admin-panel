@@ -55,7 +55,7 @@ const OrderDropDown = () => {
         </li>
         <li>
           <Link
-            href="#"
+            href="/order/orderDetail"
             className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
             style={{ fontFamily: 'var(--font-inter)' }}
           >
@@ -64,7 +64,7 @@ const OrderDropDown = () => {
         </li>
         <li>
           <Link
-            href="#"
+            href="/order/orderTracking"
             className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
             style={{ fontFamily: 'var(--font-inter)' }}
           >

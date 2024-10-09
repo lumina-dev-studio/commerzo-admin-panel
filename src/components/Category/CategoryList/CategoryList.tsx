@@ -12,9 +12,9 @@ const CategoryList = () => {
     ];
   return (
     <div className=" p-5">
-        <h1 className=" text-2xl font-bold my-8 "> Category List
+        <h1 className=" text-2xl font-bold my-8 "> Category List  </h1>
         <Table tableHead={tableHead} tableData={tableData} condition='CategoryList'/>
-      </h1>
+     
    
     </div>
   );

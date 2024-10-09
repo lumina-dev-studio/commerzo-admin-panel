@@ -59,9 +59,9 @@ const Table = ({tableHead,tableData ,condition}:any) => {
               <SelectValue placeholder="Select brand" />
             </SelectTrigger>
             <SelectContent position="popper">
-              <SelectItem value="10">10</SelectItem>
-              <SelectItem value="20">20</SelectItem>
-              <SelectItem value="30">30</SelectItem>
+              <SelectItem className=" hover:bg-blue-500 hover:text-white" value="10">10</SelectItem>
+              <SelectItem className=" hover:bg-blue-500 hover:text-white" value="20">20</SelectItem>
+              <SelectItem className=" hover:bg-blue-500 hover:text-white" value="30">30</SelectItem>
             </SelectContent>
           </Select>
 

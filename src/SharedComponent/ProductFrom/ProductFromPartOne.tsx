@@ -44,8 +44,8 @@ const ProductFromPartOne = ({productData,condition}:any) => {
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent position="popper">
-                <SelectItem value="Shop">Shop</SelectItem>
-                <SelectItem value="Product">Product</SelectItem>
+                <SelectItem className=" hover:bg-blue-500 hover:text-white" value="Shop">Shop</SelectItem>
+                <SelectItem className=" hover:bg-blue-500 hover:text-white" value="Product">Product</SelectItem>
                 
               </SelectContent>
             </Select>
@@ -57,9 +57,9 @@ const ProductFromPartOne = ({productData,condition}:any) => {
                 <SelectValue placeholder="Select gender" />
               </SelectTrigger>
               <SelectContent position="popper">
-                <SelectItem value="Male">Male</SelectItem>
-                <SelectItem value="Female">Female </SelectItem>
-                <SelectItem value="Other">Other </SelectItem>
+                <SelectItem className=" hover:bg-blue-500 hover:text-white" value="Male">Male</SelectItem>
+                <SelectItem className=" hover:bg-blue-500 hover:text-white" value="Female">Female </SelectItem>
+                <SelectItem className=" hover:bg-blue-500 hover:text-white" value="Other">Other </SelectItem>
                 
               </SelectContent>
             </Select>
@@ -73,8 +73,8 @@ const ProductFromPartOne = ({productData,condition}:any) => {
                 <SelectValue placeholder="Select brand " />
               </SelectTrigger>
               <SelectContent position="popper">
-                <SelectItem value="Shob">Shob</SelectItem>
-                <SelectItem value="Product">Product </SelectItem>
+                <SelectItem className=" hover:bg-blue-500 hover:text-white" value="Shob">Shob</SelectItem>
+                <SelectItem className=" hover:bg-blue-500 hover:text-white" value="Product">Product </SelectItem>
                
                 
               </SelectContent>

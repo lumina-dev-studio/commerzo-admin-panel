@@ -84,8 +84,8 @@ const NewCategoryFrom = () => {
                 <SelectValue placeholder="Select Icon" />
               </SelectTrigger>
               <SelectContent position="popper">
-                <SelectItem value="Icon 1">Icon 1</SelectItem>
-                <SelectItem value="Icon 2">Icon 2</SelectItem>
+                <SelectItem className=" hover:bg-blue-500 hover:text-white" value="Icon 1">Icon 1</SelectItem>
+                <SelectItem className=" hover:bg-blue-500 hover:text-white" value="Icon 2">Icon 2</SelectItem>
                 
               </SelectContent>
             </Select>

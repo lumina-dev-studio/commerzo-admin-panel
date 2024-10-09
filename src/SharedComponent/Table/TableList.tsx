@@ -12,6 +12,8 @@ import ProductTableList from "./ProductTableList";
 import CategoryTableList from "./CategoryTableList";
 import AttributesTableList from "./AttributesTableList";
 import OrderTableList from "./OrderTableList";
+import OrderDetailTableList from "./OrderDetailTableList";
+import OrderTrackingTableList from "./OrderTrackingTableList";
 
 
 const TableList = ({ tableHead, tableData,condition }: any) => {
@@ -26,7 +28,13 @@ const TableList = ({ tableHead, tableData,condition }: any) => {
               key={index}
               style={{ fontFamily: "var(--font-inter)" }}
               className={`text-[15px] bg-gray-100 p-3 text-gray-900 font-bold 
-              ${index === 2 ? "w-[220px]   " : ""}`}
+              ${index === 0 ? " rounded-s-xl   " : ""}
+              ${index === 2 ? "w-[220px]   " : ""}
+              ${index === 6 ? " text-center  " : ""}
+              
+              
+              
+              `}
             >
               {head}
             </TableHead>
@@ -40,7 +48,12 @@ const TableList = ({ tableHead, tableData,condition }: any) => {
               key={index}
               style={{ fontFamily: "var(--font-inter)" }}
               className={`text-[15px] bg-gray-100 p-3 text-gray-900 font-bold 
-              ${index === 2 ? "w-[220px]   " : ""} `}
+              ${index === 2 ? "w-[220px]   " : ""} 
+              ${index === 0 ? " rounded-s-xl   " : ""} 
+              ${index === 6 ? " ps-8  " : ""} 
+              
+              
+              `}
             >
               {head}
             </TableHead>
@@ -53,7 +66,9 @@ const TableList = ({ tableHead, tableData,condition }: any) => {
               key={index}
               style={{ fontFamily: "var(--font-inter)" }}
               className={`text-[15px] bg-gray-100 p-3 text-gray-900 font-bold 
-              ${index === 0 ? "w-[320px]   " : ""} 
+              ${index === 0 ? "w-[320px]  rounded-s-xl " : ""} 
+              ${index === 2 ? " ps-8 " : ""} 
+              ${index === 8 ? " ps-8 " : ""} 
          
               
               
@@ -71,7 +86,46 @@ const TableList = ({ tableHead, tableData,condition }: any) => {
               key={index}
               style={{ fontFamily: "var(--font-inter)" }}
               className={`text-[15px] bg-gray-100 p-3 text-gray-900 font-bold 
-              ${index === 0 ? "w-[520px]   " : ""} ${index === 3 ? "w-[220px]   " : ""}`}
+              ${index === 0 ? "w-[520px]  rounded-s-xl " : ""}
+              ${index === 3 ? "w-[220px] ps-8  " : ""}
+              
+              
+              `}
+            >
+              {head}
+            </TableHead>
+          ))}
+        </TableRow>}
+
+
+{condition==="OrderDetail" && <TableRow className=" border-none">
+          {tableHead?.map((head: string, index: number) => (
+            <TableHead
+              key={index}
+              style={{ fontFamily: "var(--font-inter)" }}
+              className={`
+              ${index === 0 ? "w-[320px]    " : ""} `}
+            >
+              {head}
+            </TableHead>
+          ))}
+        </TableRow>}
+
+{condition==="OrderTracking" && <TableRow className=" border-none">
+          {tableHead?.map((head: string, index: number) => (
+            <TableHead
+              key={index}
+              style={{ fontFamily: "var(--font-inter)" }}
+              className={` text-[15px] bg-gray-100 p-3 text-gray-900 font-bold 
+              ${index === 0 ? "rounded-s-xl    " : ""}  
+                 ${index === 2 ? "w-[320px] ps-[60px]  " : ""} 
+              ${index === 3 ? "w-[320px] text-center    " : ""} 
+              
+              
+              `
+            
+            
+            }
             >
               {head}
             </TableHead>
@@ -99,11 +153,28 @@ const TableList = ({ tableHead, tableData,condition }: any) => {
           
         ))}
       </TableBody>}  
+
+
     {condition==="OrderList"&& <TableBody className="space-y-5">
         {tableData?.map((item: any, index: number) => ( <OrderTableList item={item} index={index}/>
           
         ))}
       </TableBody>}  
+
+    {condition==="OrderDetail"&& <TableBody className="space-y-5">
+        {tableData?.map((item: any, index: number) => ( <OrderDetailTableList item={item} index={index}/>
+          
+        ))}
+      </TableBody>}  
+
+    {condition==="OrderTracking"&& <TableBody className="space-y-5">
+        {tableData?.map((item: any, index: number) => ( <OrderTrackingTableList item={item} index={index}/>
+          
+        ))}
+      </TableBody>}  
+
+
+
       {/* table body maping end */}
     </Table>
   );

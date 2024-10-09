@@ -17,9 +17,9 @@ const OrderList = () => {
     ];
   return (
     <div className=" p-5">
-        <h1 className=" text-2xl font-bold my-8 "> Order List
+        <h1 className=" text-2xl font-bold my-8 "> Order List </h1>
         <Table tableHead={tableHead} tableData={tableData} condition='OrderList'/>
-      </h1>
+     
    
     </div>
   );

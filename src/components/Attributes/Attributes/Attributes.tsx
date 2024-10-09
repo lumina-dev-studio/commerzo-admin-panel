@@ -28,9 +28,9 @@ const Attributes = () => {
   ];
 return (
   <div className=" p-5">
-      <h1 className=" text-2xl font-bold my-8 "> Attribute List
+      <h1 className=" text-2xl font-bold my-8 "> Attribute List </h1>
       <Table tableHead={tableHead} tableData={tableData} condition='Attributes'/>
-    </h1>
+   
  
   </div>
 );
