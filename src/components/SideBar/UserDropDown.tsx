@@ -8,7 +8,7 @@ import { setDropDownMenuToggle } from "@/Redux/api/SideBar/sideBarSlice";
 
 const UserDropDown = () => {
   const dispatch = useDispatch();
-  const dropDown = useAppSelector((state: RootState) => state.sideBar.dropDownMenuToggle);
+  const dropDown = useAppSelector((state: RootState) => state?.sideBar.dropDownMenuToggle);
 
   const toggleDropdown = () => {
     // Toggle the dropdown state for "User"
@@ -46,7 +46,7 @@ const UserDropDown = () => {
       <ul className={`${dropDown === "User" ? "block" : "hidden"} py-2 space-y-2`}>
         <li>
           <Link
-            href="#"
+            href="/user/allUser"
             className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
             style={{ fontFamily: 'var(--font-inter)' }}
           >
@@ -55,7 +55,7 @@ const UserDropDown = () => {
         </li>
         <li>
           <Link
-            href="#"
+            href="/user/addNewUser"
             className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
             style={{ fontFamily: 'var(--font-inter)' }}
           >

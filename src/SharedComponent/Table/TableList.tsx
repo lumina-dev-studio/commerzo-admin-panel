@@ -14,6 +14,7 @@ import AttributesTableList from "./AttributesTableList";
 import OrderTableList from "./OrderTableList";
 import OrderDetailTableList from "./OrderDetailTableList";
 import OrderTrackingTableList from "./OrderTrackingTableList";
+import AlluserTableList from "./AlluserTableList";
 
 
 const TableList = ({ tableHead, tableData,condition }: any) => {
@@ -120,10 +121,7 @@ const TableList = ({ tableHead, tableData,condition }: any) => {
               ${index === 0 ? "rounded-s-xl    " : ""}  
                  ${index === 2 ? "w-[320px] ps-[60px]  " : ""} 
               ${index === 3 ? "w-[320px] text-center    " : ""} 
-              
-              
-              `
-            
+            ` 
             
             }
             >
@@ -131,6 +129,29 @@ const TableList = ({ tableHead, tableData,condition }: any) => {
             </TableHead>
           ))}
         </TableRow>}
+
+{condition==="AllUser" && <TableRow className=" border-none">
+          {tableHead?.map((head: string, index: number) => (
+            <TableHead
+              key={index}
+              style={{ fontFamily: "var(--font-inter)" }}
+              className={` text-[15px] bg-gray-100 p-3 text-gray-900 font-bold 
+              ${index === 0 ? "rounded-s-xl    " : ""}  
+                 ${index === 2 ? "w-[320px] ps-[60px]  " : ""} 
+              ${index === 3 ? "w-[320px] text-center    " : ""} 
+            ` 
+            
+            }
+            >
+              {head}
+            </TableHead>
+          ))}
+        </TableRow>}
+
+
+
+
+
   {/* table head maping end */}
 
 {/* table body maping strat */}
@@ -169,6 +190,13 @@ const TableList = ({ tableHead, tableData,condition }: any) => {
 
     {condition==="OrderTracking"&& <TableBody className="space-y-5">
         {tableData?.map((item: any, index: number) => ( <OrderTrackingTableList item={item} index={index}/>
+          
+        ))}
+      </TableBody>}  
+
+      
+    {condition==="AllUser"&& <TableBody className="space-y-5">
+        {tableData?.map((item: any, index: number) => ( <AlluserTableList item={item} index={index}/>
           
         ))}
       </TableBody>}  
