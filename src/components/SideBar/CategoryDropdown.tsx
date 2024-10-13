@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/Redux/hooks";
 import { RootState } from "@/Redux/store";
 import { setDropDownMenuToggle } from "@/Redux/api/SideBar/sideBarSlice";
+import { usePathname } from "next/navigation";
 
 const CategoryDropdown = () => {
+  const location = usePathname();
   const dispatch = useDispatch();
   const dropDown = useAppSelector((state: RootState) => state.sideBar.dropDownMenuToggle);
 
@@ -45,19 +47,19 @@ const CategoryDropdown = () => {
         <li>
           <Link
             href="/category/categoryList"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/category/categoryList'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Category list
+            <BsDiamond className={`${location==='/category/categoryList'?"font-bold":" opacity-50"} text-[10px] mr-2`} /> Category list
           </Link>
         </li>
         <li>
           <Link
             href="/category/newCategory"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/category/newCategory'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> New category
+            <BsDiamond className={`${location==='/category/newCategory'?"font-bold":" opacity-50"} text-[10px] mr-2`} /> New category
           </Link>
         </li>
       </ul>

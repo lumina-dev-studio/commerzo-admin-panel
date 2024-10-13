@@ -1,5 +1,5 @@
 
-import { Card } from "@/components/ui/card";
+
 import TableList from "@/SharedComponent/Table/TableList";
 
 const OrderTrackingPartThree = () => {

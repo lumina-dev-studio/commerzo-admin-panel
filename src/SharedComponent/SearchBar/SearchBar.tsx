@@ -6,7 +6,7 @@ const SearchBar = () => {
 
   return (
     <div>
-      <div className={`${!isOpen?'w-full':"max-w-md"} flex rounded-xl border border-gray-200   overflow-hidden   font-[sans-serif]`}>
+      <div className={`${!isOpen?'w-full':"w-full"} flex rounded-xl border border-gray-200   overflow-hidden   font-[sans-serif]`}>
       <input 
         type="email" 
         placeholder="Search here..." 

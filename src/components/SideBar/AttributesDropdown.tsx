@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/Redux/hooks";
 import { RootState } from "@/Redux/store";
 import { setDropDownMenuToggle } from "@/Redux/api/SideBar/sideBarSlice";
+import { usePathname } from "next/navigation";
 
 const AttributesDropdown = () => {
+  const location = usePathname();
   const dispatch = useDispatch();
   const dropDown = useAppSelector((state: RootState) => state.sideBar.dropDownMenuToggle);
 
@@ -47,19 +49,19 @@ const AttributesDropdown = () => {
         <li>
           <Link
             href="/attributes"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/attributes'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Attributes
+            <BsDiamond className={`${location==='/attributes'?"font-bold":" opacity-50"} text-[10px] mr-2`} /> Attributes
           </Link>
         </li>
         <li>
           <Link
             href="/attributes/addAttributes"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/attributes/addAttributes'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Add attributes
+            <BsDiamond className={`${location==='/attributes/addAttributes'?"font-bold":" opacity-50"} text-[10px] mr-2`} /> Add attributes
           </Link>
         </li>
       </ul>

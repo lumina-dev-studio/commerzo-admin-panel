@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import { RootState } from "@/Redux/store";
 import { useAppSelector } from "@/Redux/hooks";
 import { setDropDownMenuToggle } from "@/Redux/api/SideBar/sideBarSlice";
+import { usePathname } from "next/navigation";
 
 const EcommerceDropdown = () => {
+  const location = usePathname();
   const dispatch = useDispatch();
   const dropDown = useAppSelector((state: RootState) => state.sideBar.dropDownMenuToggle);
 
@@ -48,28 +50,28 @@ const EcommerceDropdown = () => {
         <li>
           <Link
             href="/ecommerce"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/ecommerce'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Add Product
+            <BsDiamond className={`${location==='/ecommerce'?"font-bold":" opacity-50"} text-[10px] mr-2`} /> Add Product
           </Link>
         </li>
         <li>
           <Link
             href="/ecommerce/productList"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/ecommerce/productList'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Product List
+            <BsDiamond className={`${location==='/ecommerce/productList'?"font-bold":" opacity-50"} text-[10px] mr-2`} /> Product List
           </Link>
         </li>
         <li>
           <Link
             href="/ecommerce/updateProduct"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/ecommerce/updateProduct'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Update Product
+            <BsDiamond className={`${location==='/ecommerce/updateProduct'?"font-bold":" opacity-50"} text-[10px] mr-2`} /> Update Product
           </Link>
         </li>
       </ul>

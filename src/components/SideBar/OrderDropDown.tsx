@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/Redux/hooks";
 import { RootState } from "@/Redux/store";
 import { setDropDownMenuToggle } from "@/Redux/api/SideBar/sideBarSlice";
+import { usePathname } from "next/navigation";
 
 const OrderDropDown = () => {
+  const location = usePathname();
   const dispatch = useDispatch();
   const dropDown = useAppSelector((state: RootState) => state.sideBar.dropDownMenuToggle);
 
@@ -47,28 +49,28 @@ const OrderDropDown = () => {
         <li>
           <Link
             href="/order/orderList"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/order/orderList'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Order List
+            <BsDiamond className={`${location==='/order/orderList'?"font-bold":" opacity-50"} text-[10px] mr-2`} /> Order List
           </Link>
         </li>
         <li>
           <Link
             href="/order/orderDetail"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/order/orderDetail'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Order Detail
+            <BsDiamond className={`${location==='/order/orderDetail'?"font-bold":" opacity-50"} text-[10px] mr-2`} /> Order Detail
           </Link>
         </li>
         <li>
           <Link
             href="/order/orderTracking"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/order/orderTracking'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Order Tracking
+            <BsDiamond className={`${location==='/order/orderTracking'?"font-bold":" opacity-50"} text-[10px] mr-2`} /> Order Tracking
           </Link>
         </li>
       </ul>

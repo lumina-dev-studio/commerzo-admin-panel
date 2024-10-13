@@ -25,7 +25,7 @@ const NavBarSidebarButton = () => {
   return (
 
       <button
-      className={`absolute top-0 left-0 mt-2.5 p-4 transition-all duration-500  rounded-lg ${
+      className={`  p-4 transition-all duration-500  rounded-lg ${
         isOpen ? 'rotate-180 left-64 ' : ''
       }`}
       onClick={toggleSidebar}

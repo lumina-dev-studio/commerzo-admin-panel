@@ -8,7 +8,7 @@ import React from 'react';
 
 const SearchNavBar: React.FC = () => {
   return (
-   <div>
+   <div className=' w-full'>
     <SearchBar/>
    </div>
   );

@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "@/Redux/hooks";
 import { RootState } from "@/Redux/store";
 import { setDropDownMenuToggle } from "@/Redux/api/SideBar/sideBarSlice";
+import { usePathname } from "next/navigation";
 
 const UserDropDown = () => {
+  const location = usePathname();
   const dispatch = useDispatch();
   const dropDown = useAppSelector((state: RootState) => state?.sideBar.dropDownMenuToggle);
 
@@ -47,37 +49,37 @@ const UserDropDown = () => {
         <li>
           <Link
             href="/user/allUser"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/user/allUser'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> All User
+            <BsDiamond className={`${location==='/user/allUser'?"font-bold":" opacity-50"} text-[10px] mr-2`}  /> All User
           </Link>
         </li>
         <li>
           <Link
             href="/user/addNewUser"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/user/addNewUser'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Add New User
+            <BsDiamond className={`${location==='/user/addNewUser'?"font-bold":" opacity-50"} text-[10px] mr-2`}  /> Add New User
           </Link>
         </li>
         <li>
           <Link
             href="/login"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/login'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Login
+            <BsDiamond className={`${location==='/login'?"font-bold":" opacity-50"} text-[10px] mr-2`}  /> Login
           </Link>
         </li>
         <li>
           <Link
             href="/registration"
-            className="flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-gray-600 text-[15px] font-semibold hover:text-blue-500"
+            className={`${location==='/registration'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
             style={{ fontFamily: 'var(--font-inter)' }}
           >
-            <BsDiamond className="text-[10px] opacity-50 mr-2" /> Sign Up
+            <BsDiamond className={`${location==='/registration'?"font-bold":" opacity-50"} text-[10px] mr-2`}  /> Sign Up
           </Link>
         </li>
       </ul>

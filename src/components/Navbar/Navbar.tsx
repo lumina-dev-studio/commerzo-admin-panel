@@ -17,26 +17,25 @@ const Navbar = () => {
 
   const isOpen = useSelector((state: RootState) => state.navBar.sidebarToggle);
   return (
-    <div className=" h-20 bg-white grid grid-cols-12  top-0 z-10    fixed ">
+    <div className=" w-full h-20 bg-white grid grid-cols-12  top-0 z-10    fixed  bg-opacity-70">
        
 <section className={`${!isOpen?"col-span-1": "col-span-2"}  `}>
-   <div className="flex  absolute  items-center h-full">
+   <div className="flex   justify-between items-center h-full">
    {isOpen && <div >
-    <h1 className=" text-gray-700 font-bold "> Sass Project Logo</h1>
+    <h1 className=" text-gray-700 font-bold h-full "> Sass Project Logo</h1>
     </div>}
-    <div >
-   <NavBarSidebarButton/>
-    </div>
+    <NavBarSidebarButton/>
+ 
    </div>
    
 </section>
-<section className={`${!isOpen?"col-span-6 grid items-center h-full":"col-span-5 grid items-center h-full"} `}>
+<section className={`${!isOpen?"col-span-6 grid items-center h-full":"col-span-5  grid items-center h-full ms-10"} `}>
 <SearchNavBar/>
 </section>
 <section className= {`col-span-3`}>
-  <div className=" flex gap-3">
+  <div className="   md:hidden lg:flex items-center mt-3  gap-3 ms-2">
 
-   <NavbarLanguage/>
+   
    <NavbarDarkMode/>
    <NavbarNotification/>
    <NavbarChat/>
@@ -49,7 +48,7 @@ const Navbar = () => {
   
 </section>
 
-<section className=" col-span-2 ms-5 ">
+<section className=" col-span-2 ms-5 mt-2 ">
 <NavbarUserOption/>
 </section>
 
