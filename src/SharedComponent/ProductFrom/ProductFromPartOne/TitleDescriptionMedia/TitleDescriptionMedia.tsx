@@ -13,12 +13,12 @@ import Media from "./Media"
 
 
 
-const TitleDescriptionMedia = ({description,setDescription,imageFiles,setImageFiles}:any) => {
+const TitleDescriptionMedia = ({description,register,setDescription,imageFiles,setImageFiles}:any) => {
   return (
     <div>
       <Card className="p-4">
 
-        <Title/>
+        <Title register={register}/>
 
         <Description 
         

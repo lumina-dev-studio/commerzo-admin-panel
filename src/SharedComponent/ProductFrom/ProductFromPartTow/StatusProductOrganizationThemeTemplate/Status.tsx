@@ -15,18 +15,18 @@ const Status = ({status,setStatus}:any) => {
   return (
     <Card className="flex flex-col space-y-1.5 p-4">
       <Label
-        htmlFor="status"
+       
         className="font-bold text-[14px] text-slate-700 pb-2"
         style={{ fontFamily: "var(--font-inter)" }}
       >
         Status
       </Label>
       <Select
-        name="productStatus"
+       
         value={status}
         onValueChange={(value) => setStatus(value)} // Update state on selection
       >
-        <SelectTrigger id="status" className="p-6 rounded-xl">
+        <SelectTrigger  className="p-6 rounded-xl">
           <SelectValue placeholder="Select status" />
         </SelectTrigger>
         <SelectContent position="popper">

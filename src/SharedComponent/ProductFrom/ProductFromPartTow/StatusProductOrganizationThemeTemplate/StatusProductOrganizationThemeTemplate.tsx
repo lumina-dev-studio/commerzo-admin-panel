@@ -2,7 +2,7 @@ import ProductOrganization from "./ProductOrganization";
 import Status from "./Status";
 import ThemeTemplate from "./ThemeTemplate";
 
-const StatusProductOrganizationThemeTemplate = ({status,setStatus,themeTemplate,setThemeTemplate}:any) => {
+const StatusProductOrganizationThemeTemplate = ({status,register,setStatus,themeTemplate,setThemeTemplate}:any) => {
   return (
     <div>
       <Status
@@ -10,7 +10,7 @@ const StatusProductOrganizationThemeTemplate = ({status,setStatus,themeTemplate,
       status={status}
       setStatus={setStatus}
       />
-      <ProductOrganization/>
+      <ProductOrganization  register={register}/>
 
       <ThemeTemplate themeTemplate={themeTemplate} setThemeTemplate={setThemeTemplate}/>
     </div>

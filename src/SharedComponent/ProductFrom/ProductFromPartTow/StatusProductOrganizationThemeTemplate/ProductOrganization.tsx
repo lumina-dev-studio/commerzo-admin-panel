@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-const ProductOrganization = () => {
+const ProductOrganization = ({register}:any) => {
   return (
     <Card className="space-y-2.5 p-4 mt-5">
       <Label htmlFor="name" className="font-bold text-[14px] text-slate-700 " style={{ fontFamily: 'var(--font-inter)' }}>
@@ -16,7 +16,8 @@ const ProductOrganization = () => {
             </Label>
   
   <Input
-   name="collections"
+   
+   {...register("collections")}
    className=" rounded-xl"
  
    style={{ fontFamily: 'var(--font-inter)' }}
@@ -30,7 +31,8 @@ const ProductOrganization = () => {
             </Label>
   
   <Input
-   name="tags"
+  
+   {...register("tags")}
    className=" rounded-xl"
  
    style={{ fontFamily: 'var(--font-inter)' }}

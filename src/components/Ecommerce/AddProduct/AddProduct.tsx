@@ -2,28 +2,28 @@
 
 import Productfrom from "@/SharedComponent/ProductFrom/Productfrom";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const AddProduct = () => {
   const [isTaxCharged, setIsTaxCharged] = useState(false); // State for checkbox
   const [status, setStatus] = useState(""); // State to hold the selected value
+  const [weightSize, setWeightSize] = useState("kg"); // State to hold the selected value
   const [themeTemplate, setThemeTemplate] = useState(""); // State to hold the selected value
   const [description, setDescription] = useState("");
   const [imageFiles, setImageFiles] = useState<string[]>([]); // State to store image URLs
+  const [variantData, setVariantData] = useState<any[]>([]);
 
-  // Form submission handler
-  const handler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
 
-    const formData = new FormData(e.currentTarget); // Create a FormData object
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = (data:any) => {
 
-    // Retrieve form values using FormData API
-    const title = formData.get("title")?.toString() || ""; // Ensure it’s a string
-    const price = formData.get("price")?.toString() || "";
-    const compareAtPrice = formData.get("compareAtPrice")?.toString() || "";
-    const cost = formData.get("cost")?.toString() || "";
-
-    console.log({ title, price, compareAtPrice, cost });
+    data.variant=variantData
+    
+    console.log(data,'jj')
+  
   };
+
+
 
   return (
     <div className="p-5">
@@ -31,7 +31,9 @@ const AddProduct = () => {
       <Productfrom 
         imageFiles={imageFiles} 
         setImageFiles={setImageFiles}  
-        handler={handler} 
+        onSubmit={onSubmit}
+        handleSubmit={handleSubmit}
+        register={register} 
         condition="addProduct" 
         description={description} // Pass the description
         setDescription={setDescription} // Pass the state update function
@@ -41,6 +43,10 @@ const AddProduct = () => {
         setThemeTemplate={setThemeTemplate}
         isTaxCharged={isTaxCharged }
         setIsTaxCharged={setIsTaxCharged}
+        weightSize={weightSize}
+        setWeightSize={setWeightSize}
+        variantData={variantData}
+        setVariantData={setVariantData}
       />
     </div>
   );

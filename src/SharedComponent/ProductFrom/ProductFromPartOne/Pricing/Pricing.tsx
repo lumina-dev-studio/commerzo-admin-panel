@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 
-const Pricing = ({isTaxCharged,setIsTaxCharged}:any) => {
+const Pricing = ({isTaxCharged,setIsTaxCharged,register}:any) => {
   const [price, setPrice] = useState(0);
   const [compareAtPrice, setCompareAtPrice] = useState(0);
   const [cost, setCost] = useState(0);
@@ -39,7 +39,7 @@ const Pricing = ({isTaxCharged,setIsTaxCharged}:any) => {
           <Input
             type="number" // Ensure the input is numeric
             onChange={(e) => setPrice(parseFloat(e.target.value) || 0)} // Parse input value to number
-            name="price"
+            {...register("price")}
             className="rounded-xl"
             placeholder="0.00"
             style={{ fontFamily: "var(--font-inter)" }}
@@ -58,7 +58,7 @@ const Pricing = ({isTaxCharged,setIsTaxCharged}:any) => {
           <Input
             type="number" // Ensure the input is numeric
             onChange={(e) => setCompareAtPrice(parseFloat(e.target.value) || 0)} // Parse input value to number
-            name="compareAtPrice"
+            {...register("compareAtPrice")}
             className="rounded-xl"
             placeholder="0.00"
             style={{ fontFamily: "var(--font-inter)" }}
@@ -106,7 +106,7 @@ const Pricing = ({isTaxCharged,setIsTaxCharged}:any) => {
           <Input
             type="number" // Ensure the input is numeric
             onChange={(e) => setCost(parseFloat(e.target.value) || 0)} // Parse input value to number
-            name="cost"
+            {...register("cost")}
             className="rounded-xl"
             placeholder="0.00"
             style={{ fontFamily: "var(--font-inter)" }}
@@ -123,7 +123,7 @@ const Pricing = ({isTaxCharged,setIsTaxCharged}:any) => {
           </Label>
 
           <Input
-            name="profit"
+             {...register("profit")}
             className="rounded-xl"
             value={`${profit ? profit.toFixed(2) : "--"}`} // Display profit
             readOnly // Make it read-only
@@ -141,7 +141,7 @@ const Pricing = ({isTaxCharged,setIsTaxCharged}:any) => {
           </Label>
 
           <Input
-            name="margin"
+            {...register("margin")}
             className="rounded-xl"
             value={`${margin ? `${margin}%` : "--"}`} // Display margin without decimals
             readOnly // Make it read-only
