@@ -3,71 +3,113 @@
 
 import Productfrom from "@/SharedComponent/ProductFrom/Productfrom";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 
 import { toast } from "sonner"
 
 const UpadteProduct = () => {
-  const [date, setDate] = useState<Date>();
+  const [isTaxCharged, setIsTaxCharged] = useState(false); // State for checkbox
+  const [status, setStatus] = useState(""); // State to hold the selected value
+  const [weightSize, setWeightSize] = useState("kg"); // State to hold the selected value
+  const [themeTemplate, setThemeTemplate] = useState(""); // State to hold the selected value
+  const [description, setDescription] = useState("");
   const [imageFiles, setImageFiles] = useState<string[]>([]); // State to store image URLs
-  const productSize = useSelector((state: any) => state.addProduct.productSize); // Access productSize correctly
+  const [variantData, setVariantData] = useState<any[]>([]);
+  const [price, setPrice] = useState(0);
+  const [compareAtPrice, setCompareAtPrice] = useState(0);
+  const [cost, setCost] = useState(0);
+  const [profit, setProfit] = useState(0);
+  const [margin, setMargin] = useState(0);
   
 
   const productData = {
-    brand: "Product",
-    date: new Date("Mon Oct 28 2024 00:00:00 GMT+0600 (Bangladesh Standard Time)"),
-    description: "zxczxz",
-    gender: "Female",
-    imageUrl:["https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1","https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"],
-    productCategory: "Product",
-    productName: "csacf",
-    productSize: ["EU-40"]
-  };
+    "collections":"ad",
+    "compareAtPrice":2,
+    "weight":"80",
+    "weightSize":"kg",
+    "cost":1,
+    "margin":90,
+    "price":10,
+    "profit":9,
+    "tags":"ad",
+    "status":"Active",
+    "tax":true,
+    "title":"T-shart",
+    "variant":[
+    
+        {
+            "optionName":"Polo t-shirt",
+            "optionValues":[
+    
+                {
+                    "available":"1",
+                    "image":"blob:http://localhost:3000/56e64039-bd49-48ba-bc41-26e85c39b3b8",
+                    "price":"22",
+                    "value":"xl"
+    
+    
+                },
+                {
+                    "available":"1",
+                    "image":"blob:http://localhost:3000/ad0b56fd-1cf9-4253-90d9-df17100b191b",
+                    "price":"33",
+                    "value":"xxl"
+    
+    
+                }
+    
+    
+            ]
+    
+        },
+        {
+            "optionName":"helf-t-shirt",
+            "optionValues":[
+    
+                {
+                    "available":"1",
+                    "image":"blob:http://localhost:3000/56e64039-bd49-48ba-bc41-26e85c39b3b8",
+                    "price":"22",
+                    "value":"xl"
+    
+    
+                },
+                {
+                    "available":"1",
+                    "image":"blob:http://localhost:3000/ad0b56fd-1cf9-4253-90d9-df17100b191b",
+                    "price":"33",
+                    "value":"xxl"
+    
+    
+                }
+    
+    
+            ]
+    
+        }
+ 
+    ]
+   
+    }
   
  
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const onSubmit = (data:any) => {
   
-
-
-
-  const handler = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault(); 
-
-    
-      if(!date){
-
-          return toast.error("select the Date")
-      }
-
-
+      data.variant=variantData
+      data.price=price
+      data.compareAtPrice=compareAtPrice
+      data.cost=cost
+      data.profit=profit
+      data.margin=margin
+      data.tax=isTaxCharged
+      data.weightSize=weightSize
+      data.status=status
       
-      const productName = (e?.target as HTMLFormElement)?.productName?.value;
-      const productCategory = (e?.target as HTMLFormElement)?.productCategory?.value;
-      const gender = (e?.target as HTMLFormElement)?.gender?.value;
-      const brand = (e?.target as HTMLFormElement)?.brand?.value;
-      const description = (e?.target as HTMLFormElement)?.description?.value;
-     
-      let info:any={}
-
-       info.productName=productName;
-       info.productCategory=productCategory;
-       info.gender=gender;
-       info.brand=brand;
-       info.bradescriptionnd=description;
-       info.productSize=productSize;
-       info.date=date;
-          
-
-       if(imageFiles.length===0){
-        info.imageFiles=productData?.imageUrl
-       }
-       else{
-        info.imageFiles=imageFiles
-       }
-
-       console.log(info)
-
-    }
-
+      console.log(data,'jj')
+    
+    };
+      
            
 
 
@@ -77,7 +119,41 @@ const UpadteProduct = () => {
         </h1>
   
     
-      <Productfrom date={date} setDate={setDate} imageFiles={imageFiles} setImageFiles={setImageFiles} handler={handler} condition="updateProduct" productData={productData} />
+      <Productfrom
+      productData={productData}
+        imageFiles={imageFiles} 
+        setImageFiles={setImageFiles}  
+        onSubmit={onSubmit}
+        handleSubmit={handleSubmit}
+        register={register} 
+        condition="updateProduct" 
+        description={description} // Pass the description
+        setDescription={setDescription} // Pass the state update function
+        status={status}
+        setStatus={setStatus}
+        themeTemplate={themeTemplate}
+        setThemeTemplate={setThemeTemplate}
+        isTaxCharged={isTaxCharged }
+        setIsTaxCharged={setIsTaxCharged}
+        weightSize={weightSize}
+        setWeightSize={setWeightSize}
+        variantData={variantData}
+        setVariantData={setVariantData}
+
+        price={price}
+        setPrice={setPrice}
+        compareAtPrice={compareAtPrice}
+        setCompareAtPrice={setCompareAtPrice}
+        cost={cost}
+        setCost={setCost}
+        profit={profit}
+        setProfit={setProfit}
+        margin={margin}
+        setMargin={setMargin}
+      
+      />
+
+      
    
     </div>
   );

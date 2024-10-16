@@ -12,12 +12,27 @@ const AddProduct = () => {
   const [description, setDescription] = useState("");
   const [imageFiles, setImageFiles] = useState<string[]>([]); // State to store image URLs
   const [variantData, setVariantData] = useState<any[]>([]);
+  const [price, setPrice] = useState(0);
+  const [compareAtPrice, setCompareAtPrice] = useState(0);
+  const [cost, setCost] = useState(0);
+  const [profit, setProfit] = useState(0);
+  const [margin, setMargin] = useState(0);
+ 
 
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = (data:any) => {
 
     data.variant=variantData
+    data.price=price
+    data.compareAtPrice=compareAtPrice
+    data.cost=cost
+    data.profit=profit
+    data.margin=margin
+    data.tax=isTaxCharged
+    data.weightSize=weightSize
+    data.status=status
+
     
     console.log(data,'jj')
   
@@ -47,6 +62,17 @@ const AddProduct = () => {
         setWeightSize={setWeightSize}
         variantData={variantData}
         setVariantData={setVariantData}
+
+        price={price}
+        setPrice={setPrice}
+        compareAtPrice={compareAtPrice}
+        setCompareAtPrice={setCompareAtPrice}
+        cost={cost}
+        setCost={setCost}
+        profit={profit}
+        setProfit={setProfit}
+        margin={margin}
+        setMargin={setMargin}
       />
     </div>
   );

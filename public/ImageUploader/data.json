@@ -1,0 +1,82 @@
+{
+"collections":"ad",
+"compareAtPrice":2,
+"weight":"80",
+"weightSize":"kg",
+"cost":1,
+"margin":90,
+"price":10,
+"profit":9,
+"tags":"ad",
+"status":"Active",
+"tax":true,
+"title":"T-shart",
+"variant":[
+
+    {
+        "optionName":"Polo t-shirt",
+        "optionValues":[
+
+            {
+                "available":"1",
+                "image":"blob:http://localhost:3000/56e64039-bd49-48ba-bc41-26e85c39b3b8",
+                "price":"22",
+                "value":"xl"
+
+
+            },
+            {
+                "available":"1",
+                "image":"blob:http://localhost:3000/ad0b56fd-1cf9-4253-90d9-df17100b191b",
+                "price":"33",
+                "value":"xxl"
+
+
+            }
+
+
+        ]
+
+    },
+    {
+        "optionName":"helf-t-shirt",
+        "optionValues":[
+
+            {
+                "available":"1",
+                "image":"blob:http://localhost:3000/56e64039-bd49-48ba-bc41-26e85c39b3b8",
+                "price":"22",
+                "value":"xl"
+
+
+            },
+            {
+                "available":"1",
+                "image":"blob:http://localhost:3000/ad0b56fd-1cf9-4253-90d9-df17100b191b",
+                "price":"33",
+                "value":"xxl"
+
+
+            }
+
+
+        ]
+
+    }
+
+
+
+
+
+
+]
+
+
+
+
+
+
+
+
+    
+}

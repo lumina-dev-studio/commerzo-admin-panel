@@ -5,9 +5,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 const Shipping = ({register,weightSize,setWeightSize}:any) => {
   return (
-    <Card className=" p-4 flex gap-3 items-center mt-5">
 
-<div className="space-y-1.5 w-[200px]">
+    <Card className=" p-4  mt-5">
+      <Label
+            htmlFor="weight"
+            className="font-bold text-[14px] text-slate-900 "
+            style={{ fontFamily: "var(--font-inter)" }}
+          >
+            Shipping
+ 
+          </Label>
+      <div className="flex gap-3 items-center mt-10">
+
+      <div className="space-y-1.5 w-[200px]">
           <Label
             htmlFor="weight"
             className="font-semibold text-[14px] text-slate-500"
@@ -23,6 +33,12 @@ const Shipping = ({register,weightSize,setWeightSize}:any) => {
           
             style={{ fontFamily: "var(--font-inter)" }}
           />
+
+   
+
+
+
+
         </div>
 
         <div className=" w-[100px] h-full pt-7">
@@ -33,7 +49,7 @@ const Shipping = ({register,weightSize,setWeightSize}:any) => {
       value={weightSize}
       onValueChange={(value) => setWeightSize(value)} // Update state on selection
     >
-      <SelectTrigger id="status" className="p-6 rounded-xl">
+      <SelectTrigger id="status" className="p-6 rounded-xl"  >
         <SelectValue />
       </SelectTrigger>
       <SelectContent position="popper">
@@ -52,6 +68,8 @@ const Shipping = ({register,weightSize,setWeightSize}:any) => {
        
       </SelectContent>
     </Select>
+        </div>
+
         </div>
       
     </Card>

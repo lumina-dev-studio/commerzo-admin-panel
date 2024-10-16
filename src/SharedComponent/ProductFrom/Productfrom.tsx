@@ -2,8 +2,8 @@
 import ProductFromPartOne from "./ProductFromPartOne/ProductFromPartOne";
 import ProductFromPartTow from "./ProductFromPartTow/ProductFromPartTow";
 
-const Productfrom = ({onSubmit,register,handleSubmit,status,setStatus,productData,condition,imageFiles,setImageFiles,description,setDescription,
-  themeTemplate,setThemeTemplate,isTaxCharged,setIsTaxCharged,weightSize,setWeightSize,variantData,setVariantData
+const Productfrom = ({onSubmit,register,handleSubmit,status,setStatus,productData,condition,imageFiles,setImageFiles,description,setDescription, themeTemplate,setThemeTemplate,isTaxCharged,setIsTaxCharged,weightSize,setWeightSize,variantData,setVariantData,price,
+  setPrice,compareAtPrice,setCompareAtPrice,cost,setCost,margin,setMargin,profit,setProfit,
 }:any) => {
    
 
@@ -27,6 +27,17 @@ weightSize={weightSize}
 setWeightSize={setWeightSize}
 variantData={variantData}
 setVariantData={setVariantData}
+
+price={price}
+setPrice={setPrice}
+compareAtPrice={compareAtPrice}
+setCompareAtPrice={setCompareAtPrice}
+cost={cost}
+setCost={setCost}
+margin={margin}
+setMargin={setMargin}
+profit={profit}
+setProfit={setProfit}
 />
    
         {/* frist part start exd */}
@@ -39,6 +50,7 @@ setVariantData={setVariantData}
  themeTemplate={themeTemplate}
  register={register}
  setThemeTemplate={setThemeTemplate}
+ productData={productData}
 />
          {/* frist part start exd */}
   

@@ -1,11 +1,11 @@
 import NewCategory from "@/components/Category/NewCategory/NewCategory";
+import Container from "@/components/Container/Container";
 
 const page = () => {
   return (
-    <div className=" my-14">
-       
+    <Container>
       <NewCategory/>
-    </div>
+    </Container>
   );
 };
 

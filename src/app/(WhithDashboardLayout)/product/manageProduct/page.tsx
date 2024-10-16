@@ -1,10 +1,11 @@
+import Container from "@/components/Container/Container";
 import ProductList from "@/components/Ecommerce/ProductList/ProductList";
 
 const page = () => {
   return (
-    <div className=" my-14">
-      <ProductList/>
-    </div>
+    <Container>
+    <ProductList/>
+  </Container>
   );
 };
 

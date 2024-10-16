@@ -1,15 +1,12 @@
-
 import CategoryList from "@/components/Category/CategoryList/CategoryList";
-
-
+import Container from "@/components/Container/Container";
 
 const page = () => {
-
   return (
-    <div className=" my-14">
+    <Container >
        
       <CategoryList/>
-    </div>
+    </Container>
   );
 };
 

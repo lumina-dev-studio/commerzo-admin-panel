@@ -2,9 +2,12 @@
 import { useState } from "react";
 import AddNewUserFormPartOne from "./AddNewUserFormPartOne";
 import AddNewUserFormPartTwo from "./AddNewUserFormPartTwo";
+import { toast } from "sonner"
 
 const AddNewUserForm = () => {
   const [addProduct, setAddProduct] = useState('allow');
+  const [name, setName] = useState('');
+  const [role, setRole] = useState('User');
   const [updateProduct, setUpdateProduct] = useState('deny');
   const [deleteProduct, setDeleteProduct] = useState('allow');
   const [applyDiscount, setApplyDiscount] = useState('deny');
@@ -23,12 +26,30 @@ const AddNewUserForm = () => {
   const handleSubmit = (e:any) => {
     e.preventDefault();
 
-    const name = e.target.name.value;
+    
     const email = e.target.email.value;
+    const address = e.target.address.value;
+    const phoneNumber = e.target.phoneNumber.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
+   
 
-    console.log(name,email,password,confirmPassword)
+    if(password!== confirmPassword){
+
+     
+      return toast.error("password and confirmPassword not matched")
+    }
+
+    const info={
+      name,
+      email,
+      password,
+      confirmPassword,
+      address,
+      phoneNumber,
+      role
+    }
+    console.log(info)
 
     
     
@@ -53,6 +74,9 @@ const AddNewUserForm = () => {
           setShowPassword={setShowPassword}
           showConfirmPassword={showConfirmPassword}
           setShowConfirmPassword={setShowConfirmPassword}
+          role={role}
+          setRole={setRole}
+          setName={setName}
 
           />
        </section>

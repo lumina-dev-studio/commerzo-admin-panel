@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import NavbarChat from "./NavbarChat/NavbarChat";
 import NavbarDarkMode from "./NavbarDarkMode/NavbarDarkMode";
 import NavbarFullScreen from "./NavbarFullScreen/NavbarFullScreen";
-import NavbarLanguage from "./NavbarLanguage/NavbarLanguage";
+
 import NavbarNotification from "./NavbarNotification/NavbarNotification";
 import NavbarOption from "./NavbarOption/NavbarOption";
 import NavBarSidebarButton from "./NavBarSidebarButton/NavBarSidebarButton";
@@ -17,12 +17,12 @@ const Navbar = () => {
 
   const isOpen = useSelector((state: RootState) => state.navBar.sidebarToggle);
   return (
-    <div className=" w-full h-20 bg-white grid grid-cols-12  top-0 z-10    fixed  bg-opacity-70">
+    <div className=" w-full h-20 bg-white grid grid-cols-12  top-0 z-10    fixed  ">
        
 <section className={`${!isOpen?"col-span-1": "col-span-2"}  `}>
    <div className="flex   justify-between items-center h-full">
    {isOpen && <div >
-    <h1 className=" text-gray-700 font-bold h-full "> Sass Project Logo</h1>
+    <h1 className=" text-gray-700 font-bold h-full ps-5 "> Sass Project Logo</h1>
     </div>}
     <NavBarSidebarButton/>
  

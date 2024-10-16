@@ -3,8 +3,8 @@
 import { RootState } from '@/Redux/store';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import EcommerceDropdown from './EcommerceDropdown';
-import CategoryDropdown from './CategoryDropdown';
+
+
 import DashboardDropdown from './DashboardDropdown';
 import AttributesDropdown from './AttributesDropdown';
 import OrderDropDown from './OrderDropDown';
@@ -20,6 +20,7 @@ import HelpCenterDropdown from './HelpCenterDropdown';
 import FAQSDropdown from './FAQSDropdown';
 import PrivacyPolicy from './PrivacyPolicy';
 import SocialMediaDropdown from './SocialMediaDropdown';
+import ProductDropdown from './ProductDropdown';
 
 const Sidebar: React.FC = () => {
   const isOpen = useSelector((state: RootState) => state.navBar.sidebarToggle);
@@ -36,8 +37,9 @@ const Sidebar: React.FC = () => {
         <div className="px-3 py-4 rounded h-full  ">
           <ul className="space-y-2">
             <DashboardDropdown />
-            <EcommerceDropdown />
-            <CategoryDropdown />
+        
+            <ProductDropdown />
+         
             <AttributesDropdown />
             <OrderDropDown />
             <UserDropDown />

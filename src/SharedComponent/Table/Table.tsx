@@ -28,10 +28,10 @@ const Table = ({tableHead,tableData ,condition}:any) => {
   const router=useRouter();
   const routeHandler=()=>{
    if(condition==="ProductList"){
-    router.push("/ecommerce")
+    router.push("/product/addProduct")
    }
    if(condition==="CategoryList"){
-    router.push("/category/newCategory")
+    router.push("/product/addCategory")
    }
    if(condition==="Attributes"){
     router.push("/attributes/addAttributes")

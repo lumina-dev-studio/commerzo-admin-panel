@@ -21,11 +21,13 @@ const Media = ({imageFiles,setImageFiles,productData,condition,}:any) => {
       ))}
       {/* Render new images if there are any in imageFiles */}
       {imageFiles?.length > 0 && imageFiles.map((imageSrc: string, index: number) => (
-        <div key={index} className="bg-white h-[200px] border rounded-xl">
+        <div key={index} className="bg-white h-full border rounded-xl ">
           <img className="w-full h-full rounded-xl" src={imageSrc} alt={`Uploaded image ${index}`} />
         </div>
       ))}
-      <ImageUploader setImageFiles={setImageFiles} oldImages={productData?.imageUrl} />
+     <div className=" ms-5">
+     <ImageUploader setImageFiles={setImageFiles} oldImages={productData?.imageUrl} />
+     </div>
     </div>
   </div>
   );

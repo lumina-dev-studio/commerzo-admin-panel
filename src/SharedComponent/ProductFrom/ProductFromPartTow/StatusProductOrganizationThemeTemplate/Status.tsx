@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/select";
 
 
-const Status = ({status,setStatus}:any) => {
+const Status = ({status,setStatus,productData}:any) => {
 
 
   return (

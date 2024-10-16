@@ -3,7 +3,10 @@
 
 
 "use client";
+import { useLoginMutation } from '@/Redux/api/Auth/authApi';
+import { storeUserInfo } from '@/Services/Action/auth.service';
 import Link from 'next/link';
+import { useRouter } from "next/navigation";
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form'; // Import useForm
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
@@ -18,17 +21,33 @@ interface FormData {
 
 const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
-
+  const [loginMutation] = useLoginMutation();
+  const router = useRouter();
   // Initialize useForm
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
   // Handle form submission
-  const onSubmit = (data: FormData) => {
-    if(!data?.remember){
+  const onSubmit =async (e: FormData) => {
+    if(!e?.remember){
         return toast.error("Please check the point.")
 
     }
-    console.log(data); // Here you can handle login logic
+
+
+    try {
+      const data = await loginMutation({ email:e?.email, password:e?.password }).unwrap();
+      if (data && data.success === true) {
+        toast.success(data?.message);
+
+        storeUserInfo({ accessToken: data?.data?.token });
+        router.push("/");
+      }
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error?.data?.message);
+    }
+
+
   };
 
   const togglePasswordVisibility = () => {

@@ -143,7 +143,7 @@ const Variants = ({ register, variantData, setVariantData }: any) => {
 
   return (
     <Card className="p-4 mt-5">
-      <Label htmlFor="variants" className="font-semibold text-[14px] text-slate-500">
+      <Label htmlFor="variants" className="font-bold text-[14px] text-slate-900">
         Variants
       </Label>
 

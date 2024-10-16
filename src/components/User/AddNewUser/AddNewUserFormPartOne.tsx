@@ -1,6 +1,7 @@
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
-const AddNewUserFormPartOne = ({toggleConfirmPasswordVisibility,togglePasswordVisibility,showPassword,setShowPassword,showConfirmPassword,setShowConfirmPassword}:any) => {
+const AddNewUserFormPartOne = ({toggleConfirmPasswordVisibility,togglePasswordVisibility,showPassword,setShowPassword,showConfirmPassword,setShowConfirmPassword,setRole,role,setName}:any) => {
 
 
 
@@ -19,7 +20,7 @@ const AddNewUserFormPartOne = ({toggleConfirmPasswordVisibility,togglePasswordVi
            
              
               <section>
-                <label htmlFor="name">
+            
                   <p className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>
                    Name
                   
@@ -30,22 +31,24 @@ const AddNewUserFormPartOne = ({toggleConfirmPasswordVisibility,togglePasswordVi
                     id="name"
                     name="name"
                     type="text"
+                    onChange={(e)=> setName(e.target.value)}
                     className={`w-full py-3.5 border px-5 rounded-xl text-[14px] text-gray-600 `} // Error handling
                     placeholder="User name"
                     required
                   />
                  
-                </label>
+                
               </section>
             </div>
 
+         
 
               <div>
 
             
-            <label htmlFor="email">
+            
               <p className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>
-                Email address 
+                Email 
               </p>
               <input
             
@@ -57,15 +60,91 @@ const AddNewUserFormPartOne = ({toggleConfirmPasswordVisibility,togglePasswordVi
                 required
               />
            
-            </label>
+          
             </div>
 
+
+
+
+            <div className="flex flex-col space-y-7">
+           
+             
+              <section>
+                
+                  <p className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>
+                  Phone Number
+                  
+                  </p>
+                  <input
+                    
+                    style={{ fontFamily: 'var(--font-inter)' }}
+                    id="name"
+                    name="phoneNumber"
+                    type="text"
+                    className={`w-full py-3.5 border px-5 rounded-xl text-[14px] text-gray-600 `} // Error handling
+                    placeholder="Phone number"
+                    required
+                  />
+                 
+            
+              </section>
+            </div>
+
+
+            <div className="flex flex-col space-y-7">
+           
+             
+              <section>
+              
+                  <p className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>
+                  Address
+                  </p>
+                  <input
+                    
+                    style={{ fontFamily: 'var(--font-inter)' }}
+                    id="address"
+                    name="address"
+                    type="text"
+                    className={`w-full py-3.5 border px-5 rounded-xl text-[14px] text-gray-600 `} // Error handling
+                    placeholder="Address"
+                    required
+                  />
+                 
+              
+              </section>
+            </div>
+
+            <div>
+      
+                  <p className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>
+                  Role
+                  </p>
+                  <Select
+       
+       value={role}
+       onValueChange={(value) => setRole(value)} // Update state on selection
+     >
+       <SelectTrigger  className="p-6 rounded-xl">
+         <SelectValue placeholder="Select status" />
+       </SelectTrigger>
+       <SelectContent position="popper">
+         <SelectItem value="Admin" className="hover:bg-blue-500 hover:text-white">
+           Admin
+         </SelectItem>
+         <SelectItem value="User" className="hover:bg-blue-500 hover:text-white">
+           User
+         </SelectItem>
+       </SelectContent>
+     </Select>
+
+            </div>
+        
 
             <div>
 
           
 
-            <label htmlFor="password">
+            
               <p className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>
                 Password 
               </p>
@@ -89,14 +168,14 @@ const AddNewUserFormPartOne = ({toggleConfirmPasswordVisibility,togglePasswordVi
                 </button>
               </div>
            
-            </label>
+          
             </div>
 
             <div>
 
         
 
-            <label htmlFor="confirmPassword">
+          
               <p className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>
                 Confirm Password 
               </p>
@@ -121,7 +200,7 @@ const AddNewUserFormPartOne = ({toggleConfirmPasswordVisibility,togglePasswordVi
                 </button>
               </div>
              
-            </label>
+            
             </div>
       </section>
     </div>
