@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 import Providers from "@/Providers/Providers";
+import { Toaster } from "@/components/ui/sonner";
 
 // Load Inter font from Google Fonts
 const inter = Inter({
@@ -40,7 +41,7 @@ export default function RootLayout({
         className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-gray-200/80`}
       >
        <main>{children}</main> 
-       
+       <Toaster />
       </body>
     </html>
     </Providers>
