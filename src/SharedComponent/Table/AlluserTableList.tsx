@@ -20,7 +20,8 @@ const AlluserTableList = ({item,index}:any) => {
                  <div>
                    <img
                      className="h-[50px] w-[50px] rounded-xl"
-                     src={item?.image}
+                    //  src={item?.image}
+                     src={"https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}
                      alt=""
                    />
                  </div>
@@ -39,7 +40,7 @@ const AlluserTableList = ({item,index}:any) => {
           <div>
              
                  <p className="hover:text-blue-500 cursor-pointer text-gray-900 font-semibold"style={{ fontFamily: 'var(--font-inter)' }} >
-                     {item?.phone}</p>
+                     {item?.phoneNumber}</p>
                  </div>
      
      </TableCell>

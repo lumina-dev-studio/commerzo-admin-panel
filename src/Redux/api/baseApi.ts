@@ -1,16 +1,17 @@
 // import { getUserInfo } from "@/Services/Action/auth.services";
+import { getUserInfo } from "@/Services/Action/auth.service";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const baseQuery = fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
-    // baseUrl: "https://travel-buddy-backend-side-production.up.railway.app/api",
+    // baseUrl: "http://localhost:5000/api",
+    baseUrl: "https://sass-project-server-side.vercel.app/api",
     credentials: "include",
     prepareHeaders: (headers) => {
-    //   const token = getUserInfo();
+      const token = getUserInfo();
   
-    //   console.log(token, "token");
-    //   if (token) {
-    //     headers.set("authorization", `${token}`);
-    //   }
+     
+      if (token) {
+        headers.set("authorization", `${token}`);
+      }
   
       return headers;
     },

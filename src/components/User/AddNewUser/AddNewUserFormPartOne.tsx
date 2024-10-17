@@ -1,7 +1,7 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
-const AddNewUserFormPartOne = ({toggleConfirmPasswordVisibility,togglePasswordVisibility,showPassword,setShowPassword,showConfirmPassword,setShowConfirmPassword,setRole,role,setName}:any) => {
+const AddNewUserFormPartOne = ({toggleConfirmPasswordVisibility,togglePasswordVisibility,showPassword,setShowPassword,showConfirmPassword,setShowConfirmPassword,setRole,role}:any) => {
 
 
 
@@ -28,10 +28,10 @@ const AddNewUserFormPartOne = ({toggleConfirmPasswordVisibility,togglePasswordVi
                   <input
                     
                     style={{ fontFamily: 'var(--font-inter)' }}
-                    id="name"
-                    name="name"
+                    id="userName"
+                    name="userName"
                     type="text"
-                    onChange={(e)=> setName(e.target.value)}
+                   
                     className={`w-full py-3.5 border px-5 rounded-xl text-[14px] text-gray-600 `} // Error handling
                     placeholder="User name"
                     required

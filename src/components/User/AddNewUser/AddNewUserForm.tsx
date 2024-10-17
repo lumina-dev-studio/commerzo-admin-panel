@@ -3,10 +3,11 @@ import { useState } from "react";
 import AddNewUserFormPartOne from "./AddNewUserFormPartOne";
 import AddNewUserFormPartTwo from "./AddNewUserFormPartTwo";
 import { toast } from "sonner"
+import { useCreateUserMutation } from "@/Redux/api/User/userApi";
 
 const AddNewUserForm = () => {
   const [addProduct, setAddProduct] = useState('allow');
-  const [name, setName] = useState('');
+
   const [role, setRole] = useState('User');
   const [updateProduct, setUpdateProduct] = useState('deny');
   const [deleteProduct, setDeleteProduct] = useState('allow');
@@ -23,16 +24,21 @@ const AddNewUserForm = () => {
     setShowConfirmPassword((prev) => !prev); // Toggle the state
   };
 
-  const handleSubmit = (e:any) => {
+
+  const [createUser] = useCreateUserMutation();
+  
+
+  const handleSubmit =async (e:any) => {
     e.preventDefault();
 
     
     const email = e.target.email.value;
+    const name = e.target.userName.value;
     const address = e.target.address.value;
     const phoneNumber = e.target.phoneNumber.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
-   
+   console.log(name,'name')
 
     if(password!== confirmPassword){
 
@@ -52,14 +58,26 @@ const AddNewUserForm = () => {
     console.log(info)
 
     
+    try {
+      const data = await createUser(info).unwrap();
+      if (data && data.success === true) {
+        toast.success(data?.message);
+        //  Clear the form fields
+       
+        setRole('User');
+        e.target.userName.value = '';
+        e.target.email.value = '';
+        e.target.address.value = '';
+        e.target.phoneNumber.value = '';
+        e.target.password.value = '';
+        e.target.confirmPassword.value = '';
+       
+      }
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error?.data.message);
+    }
     
-    console.log({
-      addProduct,
-      updateProduct,
-      deleteProduct,
-      applyDiscount,
-      createCoupon,
-    });
     // Add any further actions needed with the selected values
   };
   return (
@@ -76,7 +94,7 @@ const AddNewUserForm = () => {
           setShowConfirmPassword={setShowConfirmPassword}
           role={role}
           setRole={setRole}
-          setName={setName}
+         
 
           />
        </section>
