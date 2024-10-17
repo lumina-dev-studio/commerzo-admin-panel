@@ -3,7 +3,7 @@ import { useGetAllUsersQuery } from "@/Redux/api/User/userApi";
 import Table from "@/SharedComponent/Table/Table";
 
 const AllUSer = () => {
-  const tableHead=["User	","Phone",,"Email","Action" ]
+  const tableHead=["User	","Phone",,"Email","Role","Action" ]
   const { data:tableData, refetch, isLoading, error }: any = useGetAllUsersQuery("");
   
 

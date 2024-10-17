@@ -27,7 +27,9 @@ const AlluserTableList = ({item,index}:any) => {
                  </div>
                  <div>
             
-                 <p className="hover:text-blue-500 cursor-pointer  font-semibold"style={{ fontFamily: 'var(--font-inter)' }} >{item?.name}</p>
+                 <p className="hover:text-blue-500 cursor-pointer  font-semibold"style={{ fontFamily: 'var(--font-inter)' }} >
+                 { item?.name?.length>15?` ${item?.name?.slice(0,100)}...`:item?.name }
+                  </p>
                  </div>
                </div>
              </TableCell>
@@ -40,7 +42,9 @@ const AlluserTableList = ({item,index}:any) => {
           <div>
              
                  <p className="hover:text-blue-500 cursor-pointer text-gray-900 font-semibold"style={{ fontFamily: 'var(--font-inter)' }} >
-                     {item?.phoneNumber}</p>
+                     { item?.phoneNumber?.length>15?` ${item?.phoneNumber?.slice(0,15)}...`:item?.phoneNumber }
+                     
+                     </p>
                  </div>
      
      </TableCell>
@@ -53,6 +57,16 @@ const AlluserTableList = ({item,index}:any) => {
                
                  <p className="hover:text-blue-500 cursor-pointer  text-gray-900 font-semibold"style={{ fontFamily: 'var(--font-inter)' }} >
                      {item?.email}</p>
+                 </div>
+     </TableCell>
+     <TableCell
+       className="text-[13px] font-medium text-gray-600 p-3 text-center"
+       style={{ fontFamily: "var(--font-inter)" }}
+     >
+         <div>
+               
+                 <p className="hover:text-blue-500 cursor-pointer  text-gray-900 font-semibold"style={{ fontFamily: 'var(--font-inter)' }} >
+                     {item?.role}</p>
                  </div>
      </TableCell>
     

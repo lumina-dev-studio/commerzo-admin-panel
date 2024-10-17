@@ -138,7 +138,8 @@ const TableList = ({ tableHead, tableData,condition }: any) => {
               className={` text-[15px] bg-gray-100 p-3 text-gray-900 font-bold 
               ${index === 0 ? "rounded-s-xl    " : ""}  
                  ${index === 2 ? "w-[320px] ps-[60px]  " : ""} 
-              ${index === 3 ? "w-[320px] text-center    " : ""} 
+              ${index === 3 ? "w-[100px] text-center    " : ""} 
+              ${index === 4 ? "w-[100px] text-center    " : ""} 
             ` 
             
             }
