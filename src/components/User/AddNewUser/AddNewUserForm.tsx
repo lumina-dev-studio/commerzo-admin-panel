@@ -75,7 +75,7 @@ const AddNewUserForm = () => {
       }
     } catch (error: any) {
       console.log(error);
-      toast.error(error?.data.message);
+      toast.error(error?.data?.message);
     }
     
     // Add any further actions needed with the selected values
