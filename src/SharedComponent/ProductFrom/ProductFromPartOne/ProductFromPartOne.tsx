@@ -4,7 +4,7 @@ import TitleDescriptionMedia from "./TitleDescriptionMedia/TitleDescriptionMedia
 import Variants from "./Variants/Variants";
 
 const ProductFromPartOne = ({ description, register,setDescription ,imageFiles,setImageFiles,isTaxCharged,variantData,setVariantData,
-  setIsTaxCharged, weightSize,setWeightSize,price, setPrice,compareAtPrice,setCompareAtPrice,cost,setCost,margin,setMargin,profit,setProfit,productData}: any) => {
+  setIsTaxCharged, weightSize,setWeightSize,price, setPrice,compareAtPrice,setCompareAtPrice,cost,setCost,margin,setMargin,profit,setProfit,productData,variantCount,setVariantCount,optionValues,setOptionValues,completedVariants,setCompletedVariants,optionNames,setOptionNames,selectedVariant,setSelectedVariant}: any) => {
   return (
     <div>
       <section>
@@ -48,6 +48,13 @@ const ProductFromPartOne = ({ description, register,setDescription ,imageFiles,s
         variantData={variantData}
         setVariantData={setVariantData}
         productData={productData}
+
+
+        variantCount={variantCount} setVariantCount={setVariantCount}
+optionValues={optionValues} setOptionValues={setOptionValues}
+completedVariants={completedVariants} setCompletedVariants={setCompletedVariants}
+optionNames={optionNames} setOptionNames={setOptionNames}
+selectedVariant={selectedVariant} setSelectedVariant={setSelectedVariant}
  
         />
 

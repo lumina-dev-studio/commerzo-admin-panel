@@ -27,9 +27,10 @@ const Shipping = ({register,weightSize,setWeightSize}:any) => {
           </Label>
 
           <Input
+          type="number"
             {...register("weight")}
             className="rounded-xl"
-      
+      required
           
             style={{ fontFamily: "var(--font-inter)" }}
           />

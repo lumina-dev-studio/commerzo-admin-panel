@@ -1,8 +1,13 @@
 "use client";
 
+import { useCreateProductMutation } from "@/Redux/api/Product/productApi";
+import { getUserInfo } from "@/Services/Action/auth.service";
 import Productfrom from "@/SharedComponent/ProductFrom/Productfrom";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+
 
 const AddProduct = () => {
   const [isTaxCharged, setIsTaxCharged] = useState(false); // State for checkbox
@@ -17,14 +22,41 @@ const AddProduct = () => {
   const [cost, setCost] = useState(0);
   const [profit, setProfit] = useState(0);
   const [margin, setMargin] = useState(0);
+
+  // -----------------------
+
+  const [variantCount, setVariantCount] = useState(0);
+  const [optionValues, setOptionValues] = useState([[""]]);
+  const [completedVariants, setCompletedVariants] = useState<boolean[]>([]);
+  const [optionNames, setOptionNames] = useState<string[]>([]);
+  const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
+
+  // -------------------------------
  
 
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = (data:any) => {
+  const [createProduct] = useCreateProductMutation();
+  const router = useRouter();
 
+  const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
+  const onSubmit =async (data:any) => {
+
+    if(!description){
+      return toast.error('Description is required')
+    }
+    if(imageFiles?.length===0){
+      return toast.error('Media Image is required')
+    }
+    if(!status){
+      return toast.error('Status is required')
+    }
+    if(!themeTemplate){
+      return toast.error('Theme Template is required')
+    }
+
+    data.mediaImage=imageFiles
     data.variant=variantData
-    data.price=price
+    data.price=Number(price)
     data.compareAtPrice=compareAtPrice
     data.cost=cost
     data.profit=profit
@@ -32,9 +64,47 @@ const AddProduct = () => {
     data.tax=isTaxCharged
     data.weightSize=weightSize
     data.status=status
+    data.themeTemplate=themeTemplate
 
     
     console.log(data,'jj')
+
+
+
+    try {
+      const cratedData = await createProduct(data).unwrap();
+      if (cratedData && cratedData.success === true) {
+        toast.success(cratedData?.message);
+       
+       
+     
+        // Clear form and states after submission
+        reset(); // Reset form values
+        setImageFiles([]);
+        setVariantData([]);
+        setPrice(0);
+        setCompareAtPrice(0);
+        setCost(0);
+        setProfit(0);
+        setMargin(0);
+        setIsTaxCharged(false);
+        setStatus("");
+        setWeightSize("kg");
+        setThemeTemplate("");
+        setDescription("");
+
+        // Reset variant-related states
+        setVariantCount(0);
+        setOptionValues([[""]]);
+        setCompletedVariants([]);
+        setOptionNames([]);
+        setSelectedVariant(null);
+       
+      }
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error?.data?.message);
+    }
   
   };
 
@@ -73,6 +143,14 @@ const AddProduct = () => {
         setProfit={setProfit}
         margin={margin}
         setMargin={setMargin}
+
+
+
+        variantCount={variantCount} setVariantCount={setVariantCount}
+       optionValues={optionValues} setOptionValues={setOptionValues}
+       completedVariants={completedVariants} setCompletedVariants={setCompletedVariants}
+       optionNames={optionNames} setOptionNames={setOptionNames}
+       selectedVariant={selectedVariant} setSelectedVariant={setSelectedVariant}
       />
     </div>
   );

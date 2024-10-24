@@ -3,7 +3,7 @@ import ProductFromPartOne from "./ProductFromPartOne/ProductFromPartOne";
 import ProductFromPartTow from "./ProductFromPartTow/ProductFromPartTow";
 
 const Productfrom = ({onSubmit,register,handleSubmit,status,setStatus,productData,condition,imageFiles,setImageFiles,description,setDescription, themeTemplate,setThemeTemplate,isTaxCharged,setIsTaxCharged,weightSize,setWeightSize,variantData,setVariantData,price,
-  setPrice,compareAtPrice,setCompareAtPrice,cost,setCost,margin,setMargin,profit,setProfit,
+  setPrice,compareAtPrice,setCompareAtPrice,cost,setCost,margin,setMargin,profit,setProfit,variantCount,setVariantCount,optionValues,setOptionValues,completedVariants,setCompletedVariants,optionNames,setOptionNames,selectedVariant,setSelectedVariant
 }:any) => {
    
 
@@ -38,6 +38,15 @@ margin={margin}
 setMargin={setMargin}
 profit={profit}
 setProfit={setProfit}
+
+
+
+
+variantCount={variantCount} setVariantCount={setVariantCount}
+optionValues={optionValues} setOptionValues={setOptionValues}
+completedVariants={completedVariants} setCompletedVariants={setCompletedVariants}
+optionNames={optionNames} setOptionNames={setOptionNames}
+selectedVariant={selectedVariant} setSelectedVariant={setSelectedVariant}
 />
    
         {/* frist part start exd */}

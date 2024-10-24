@@ -44,6 +44,8 @@ const Pricing = ({isTaxCharged,setIsTaxCharged,register,price,
             className="rounded-xl"
             placeholder="0.00"
             style={{ fontFamily: "var(--font-inter)" }}
+
+            required
           />
         </div>
 
@@ -63,6 +65,8 @@ const Pricing = ({isTaxCharged,setIsTaxCharged,register,price,
             className="rounded-xl"
             placeholder="0.00"
             style={{ fontFamily: "var(--font-inter)" }}
+
+            required
           />
         </div>
       </section>
@@ -111,6 +115,7 @@ const Pricing = ({isTaxCharged,setIsTaxCharged,register,price,
             className="rounded-xl"
             placeholder="0.00"
             style={{ fontFamily: "var(--font-inter)" }}
+            required
           />
         </div>
 

@@ -38,6 +38,7 @@ const Description: React.FC<DescriptionProps> = ({ description, setDescription }
         Description
       </Label>
       <JoditEditor
+       
         ref={editor}
         value={description}
         config={config}

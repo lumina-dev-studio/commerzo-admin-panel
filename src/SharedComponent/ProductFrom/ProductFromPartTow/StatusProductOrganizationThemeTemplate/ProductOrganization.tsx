@@ -19,7 +19,7 @@ const ProductOrganization = ({register}:any) => {
    
    {...register("collections")}
    className=" rounded-xl"
- 
+ required
    style={{ fontFamily: 'var(--font-inter)' }}
   />
    </div>
@@ -34,7 +34,7 @@ const ProductOrganization = ({register}:any) => {
   
    {...register("tags")}
    className=" rounded-xl"
- 
+ required
    style={{ fontFamily: 'var(--font-inter)' }}
   />
    </div>

@@ -12,6 +12,7 @@ const Title = ({register}:any) => {
       
       <Input
      {...register("title")}
+     required
        className=" rounded-xl"
        placeholder=" Short sleeve t-shirt"
        style={{ fontFamily: 'var(--font-inter)' }}

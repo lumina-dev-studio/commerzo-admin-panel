@@ -15,12 +15,12 @@ import { CiCirclePlus } from "react-icons/ci";
 import { toast } from "sonner";
 import { FaImages } from "react-icons/fa";
 
-const Variants = ({ register, variantData, setVariantData }: any) => {
-  const [variantCount, setVariantCount] = useState(0);
-  const [optionValues, setOptionValues] = useState([[""]]);
-  const [completedVariants, setCompletedVariants] = useState<boolean[]>([]);
-  const [optionNames, setOptionNames] = useState<string[]>([]);
-  const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
+const Variants = ({ register, variantData, setVariantData,variantCount,setVariantCount,optionValues,setOptionValues,completedVariants,setCompletedVariants,optionNames,setOptionNames,selectedVariant,setSelectedVariant }: any) => {
+  // const [variantCount, setVariantCount] = useState(0);
+  // const [optionValues, setOptionValues] = useState([[""]]);
+  // const [completedVariants, setCompletedVariants] = useState<boolean[]>([]);
+  // const [optionNames, setOptionNames] = useState<string[]>([]);
+  // const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
 
   useEffect(() => {
     // Set default selected variant if variantData is available and selectedVariant is null
@@ -53,7 +53,7 @@ const Variants = ({ register, variantData, setVariantData }: any) => {
 
   const handleDeleteOption = (variantIndex: number, valueIndex: number) => {
     const updatedOptionValues = [...optionValues];
-    const filteredValues = updatedOptionValues[variantIndex].filter((_, i) => i !== valueIndex);
+    const filteredValues = updatedOptionValues[variantIndex].filter((_:any, i:any) => i !== valueIndex);
     updatedOptionValues[variantIndex] = filteredValues;
     setOptionValues(updatedOptionValues);
   };
@@ -66,14 +66,14 @@ const Variants = ({ register, variantData, setVariantData }: any) => {
       return toast.error("Option name required");
     }
 
-    const values = optionValues[variantIndex].filter((value) => value.trim() !== "");
+    const values = optionValues[variantIndex].filter((value:any) => value.trim() !== "");
     if (values.length === 0) {
       return toast.error("Option value required");
     }
 
     const formattedVariant = {
       optionName,
-      optionValues: values.map((value) => ({
+      optionValues: values.map((value:any) => ({
         value,
         price: "",
         available: "",
@@ -90,7 +90,7 @@ const Variants = ({ register, variantData, setVariantData }: any) => {
       return newData;
     });
 
-    setCompletedVariants((prev) => {
+    setCompletedVariants((prev:any) => {
       const updated = [...prev];
       updated[variantIndex] = true;
       return updated;
@@ -128,17 +128,46 @@ const Variants = ({ register, variantData, setVariantData }: any) => {
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>, variantIndex: number, valueIndex: number) => {
-    const file = event.target.files?.[0];
-    if (file && selectedVariant) {
-      setVariantData((prev: any) => {
-        const newData = [...prev];
-        const optionIndex = newData.findIndex((variant) => variant.optionName === selectedVariant);
-        if (optionIndex >= 0) {
-          newData[optionIndex].optionValues[valueIndex].image = URL.createObjectURL(file); // Save image URL
+    const file:any = event.target.files?.[0];
+    
+
+    const image_hosting_url = `https://api.imgbb.com/1/upload?key=8460cd1a14bf680b3bf68fe6e9950c8d`;
+
+    const formData = new FormData();
+
+    formData.append("image", file);
+    fetch(image_hosting_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then(async (imageResponse) => {
+        if (imageResponse.success) {
+          const imageURL = imageResponse.data.display_url;
+          if (file && selectedVariant) {
+            setVariantData((prev: any) => {
+              const newData = [...prev];
+              const optionIndex = newData.findIndex((variant) => variant.optionName === selectedVariant);
+              if (optionIndex >= 0) {
+                newData[optionIndex].optionValues[valueIndex].image = imageURL; // Save image URL
+              }
+              return newData;
+            });
+          }
         }
-        return newData;
       });
-    }
+
+    
+    // if (file && selectedVariant) {
+    //   setVariantData((prev: any) => {
+    //     const newData = [...prev];
+    //     const optionIndex = newData.findIndex((variant) => variant.optionName === selectedVariant);
+    //     if (optionIndex >= 0) {
+    //       newData[optionIndex].optionValues[valueIndex].image = URL.createObjectURL(file); // Save image URL
+    //     }
+    //     return newData;
+    //   });
+    // }
   };
 
   return (
@@ -169,7 +198,7 @@ const Variants = ({ register, variantData, setVariantData }: any) => {
                 <Input id={`optionName${variantIndex + 1}`} className="rounded-xl" placeholder={`e.g. Size, Color`} />
               </div>
 
-              {optionValues[variantIndex].map((optionValue, valueIndex) => (
+              {optionValues[variantIndex].map((optionValue:any, valueIndex:any) => (
                 <div key={valueIndex} className="space-y-2 mt-4">
                   <Label htmlFor={`optionValue${variantIndex + 1}-${valueIndex + 1}`} className="font-semibold text-[14px] text-slate-500">
                     Option value {valueIndex + 1}
