@@ -14,15 +14,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { useCreateCategoryMutation } from "@/Redux/api/Product/Category/categoryApi"
 import { useState } from "react"
 import { toast } from "sonner";
 
 const NewCategoryFrom = () => {
 
   const [imageFiles,setImageFiles]=useState([]);
+  const [createCategory] = useCreateCategoryMutation();
 
 
-  const handler = (e: React.FormEvent<HTMLFormElement>) => {
+  const handler =async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (imageFiles.length === 0) {
@@ -31,10 +33,29 @@ const NewCategoryFrom = () => {
   
     // Gather form values
     const categoryName = (e.target as HTMLFormElement).categoryName.value;
-    const categoryIcon = (e.target as HTMLFormElement).categoryIcon.value;
+    // const categoryIcon = (e.target as HTMLFormElement).categoryIcon.value;
    
-      const info={categoryName,categoryIcon,categoryImage:imageFiles[imageFiles.length -1]}
+      const info={categoryName,categoryImage:imageFiles[imageFiles.length -1]}
       console.log(info)
+
+
+
+
+      try {
+        const cratedData = await createCategory(info).unwrap();
+        if (cratedData && cratedData.success === true) {
+          toast.success(cratedData?.message);
+         
+         
+       
+          // Clear form and states after submission
+        
+         
+        }
+      } catch (error: any) {
+        console.log(error);
+        toast.error(error?.data?.message);
+      }
   
      }
 
@@ -67,12 +88,20 @@ const NewCategoryFrom = () => {
        <span className="text-red-500 text-bold text-10px">*</span> </Label>
        </div>
 
-       <div className="col-span-9">
+       <div className="col-span-9 relative">
         <ImageUploader setImageFiles={setImageFiles} condition="NewCategory"/>
+       
+       
+      {/* Render new images if there are any in imageFiles */}
+      {imageFiles?.length > 0 && imageFiles.map((imageSrc: string, index: number) => (
+        <div key={index} className="bg-white h-[90%] border rounded-xl absolute top-3 left-2">
+          <img className="w-[200px] h-full rounded-xl" src={imageSrc} alt={`Uploaded image ${index}`} />
+        </div>
+      ))}
        </div>
         </section>
 
-        <section className="grid grid-cols-12 items-center">
+        {/* <section className="grid grid-cols-12 items-center">
         <div className="col-span-3">
        <Label htmlFor="framework" className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>Select category icon
        <span className="text-red-500 text-bold text-10px">*</span> </Label>
@@ -90,7 +119,7 @@ const NewCategoryFrom = () => {
               </SelectContent>
             </Select>
        </div>
-        </section>
+        </section> */}
 
       
         <section className="grid grid-cols-12 items-center">
