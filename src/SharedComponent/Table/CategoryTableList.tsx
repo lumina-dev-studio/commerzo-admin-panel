@@ -20,11 +20,11 @@ const CategoryTableList = ({item,index}:any) => {
                 <div>
                   <img
                     className="h-[50px] w-[50px] text-[15px] font-bold bg-gray-900"
-                    src={item?.image}
+                    src={item?.categoryImage}
                     alt=""
                   />
                 </div>
-                <div className="hover:text-blue-500 cursor-pointer">{item?.Product}</div>
+                <div className="hover:text-blue-500 cursor-pointer">{item?.categoryName}</div>
               </div>
             </TableCell>
 
@@ -36,25 +36,9 @@ const CategoryTableList = ({item,index}:any) => {
               <IoFastFoodOutline className=" text-[20px]"/>
               </p>
             </TableCell>
-            <TableCell
-              className="text-[13px] font-medium text-gray-600 p-3"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              {item?.Quantity}
-            </TableCell>
-            <TableCell
-              className="text-[13px] font-medium text-gray-600 p-3"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              {item?.Sale}
-            </TableCell>
           
-            <TableCell
-              className="text-[13px] font-medium text-gray-600 p-3"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              {item?.StartDate}
-            </TableCell>
+          
+         
             <TableCell
               className="text-[13px] font-medium text-gray-600 p-3"
               style={{ fontFamily: "var(--font-inter)" }}

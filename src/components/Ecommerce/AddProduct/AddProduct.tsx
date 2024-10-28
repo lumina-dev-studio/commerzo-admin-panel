@@ -15,6 +15,7 @@ const AddProduct = () => {
   const [weightSize, setWeightSize] = useState("kg"); // State to hold the selected value
   const [themeTemplate, setThemeTemplate] = useState(""); // State to hold the selected value
   const [description, setDescription] = useState("");
+  const [category,setCategory] = useState("");
   const [imageFiles, setImageFiles] = useState<string[]>([]); // State to store image URLs
   const [variantData, setVariantData] = useState<any[]>([]);
   const [price, setPrice] = useState(0);
@@ -44,6 +45,9 @@ const AddProduct = () => {
     if(!description){
       return toast.error('Description is required')
     }
+    if(!category){
+      return toast.error('Category is required')
+    }
     if(imageFiles?.length===0){
       return toast.error('Media Image is required')
     }
@@ -65,6 +69,7 @@ const AddProduct = () => {
     data.weightSize=weightSize
     data.status=status
     data.themeTemplate=themeTemplate
+    data.category=category
 
     
     console.log(data,'jj')
@@ -92,6 +97,8 @@ const AddProduct = () => {
         setWeightSize("kg");
         setThemeTemplate("");
         setDescription("");
+
+        setCategory("")
 
         // Reset variant-related states
         setVariantCount(0);
@@ -151,6 +158,8 @@ const AddProduct = () => {
        completedVariants={completedVariants} setCompletedVariants={setCompletedVariants}
        optionNames={optionNames} setOptionNames={setOptionNames}
        selectedVariant={selectedVariant} setSelectedVariant={setSelectedVariant}
+       
+       category={category} setCategory={setCategory}
       />
     </div>
   );

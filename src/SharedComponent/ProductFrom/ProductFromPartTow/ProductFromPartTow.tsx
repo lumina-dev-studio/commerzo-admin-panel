@@ -9,7 +9,7 @@ import StatusProductOrganizationThemeTemplate from "./StatusProductOrganizationT
 const ProductFromPartTow= ({
 
   status,setStatus,
-  themeTemplate,setThemeTemplate,register, productData
+  themeTemplate,setThemeTemplate,register, productData,category,setCategory
 }:any) => {
  
 
@@ -26,6 +26,7 @@ const ProductFromPartTow= ({
        register={register}
  setThemeTemplate={setThemeTemplate}
  productData={productData}
+ category={category} setCategory={setCategory}
       />
     </div>
   );

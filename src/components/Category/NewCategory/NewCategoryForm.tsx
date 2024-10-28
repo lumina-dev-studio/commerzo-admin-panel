@@ -1,148 +1,98 @@
+
+
+
+
+
 "use client"
 import ImageUploader from "@/components/ImageUploader/ImageUploader"
-import {
-  Card,
-  CardContent,
- 
-} from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { useCreateCategoryMutation } from "@/Redux/api/Product/Category/categoryApi"
 import { useState } from "react"
 import { toast } from "sonner";
 
 const NewCategoryFrom = () => {
-
-  const [imageFiles,setImageFiles]=useState([]);
+  const [imageFiles, setImageFiles] = useState([]);
+  const [categoryName, setCategoryName] = useState('');
   const [createCategory] = useCreateCategoryMutation();
 
-
-  const handler =async (e: React.FormEvent<HTMLFormElement>) => {
+  const handler = async (e:any) => {
     e.preventDefault();
 
     if (imageFiles.length === 0) {
       return toast.error("Please select at least one image.");
     }
-  
-    // Gather form values
-    const categoryName = (e.target as HTMLFormElement).categoryName.value;
-    // const categoryIcon = (e.target as HTMLFormElement).categoryIcon.value;
-   
-      const info={categoryName,categoryImage:imageFiles[imageFiles.length -1]}
-      console.log(info)
 
+    const info = { categoryName, categoryImage: imageFiles[imageFiles.length - 1] };
+    console.log(info);
 
-
-
-      try {
-        const cratedData = await createCategory(info).unwrap();
-        if (cratedData && cratedData.success === true) {
-          toast.success(cratedData?.message);
-         
-         
-       
-          // Clear form and states after submission
-        
-         
-        }
-      } catch (error: any) {
-        console.log(error);
-        toast.error(error?.data?.message);
+    try {
+      const createdData = await createCategory(info).unwrap();
+      if (createdData && createdData.success === true) {
+        toast.success(createdData?.message);
+        setCategoryName(''); // Clear the category name field
+        setImageFiles([]); // Clear the image files
       }
-  
-     }
+    } catch (error:any) {
+      console.log(error);
+      toast.error(error?.data?.message);
+    }
+  };
 
-  
   return (
-    <div >
+    <div>
+      <Card className="w-full shadow-none pt-7">
+        <CardContent className="space-y-10">
+          <section className="grid grid-cols-12 items-center">
+            <div className="col-span-3">
+              <Label htmlFor="name" className="font-bold text-[14px] text-slate-700 pb-2">
+                Category Name <span className="text-red-500">*</span>
+              </Label>
+            </div>
+            <div className="col-span-9">
+              <Input
+                onChange={(e) => setCategoryName(e.target.value)}
+                id="name"
+                placeholder="Category name"
+                maxLength={20}
+                className="p-6 rounded-xl"
+                required
+                name="categoryName"
+                value={categoryName}
+              />
+            </div>
+          </section>
 
-   
-        <form onSubmit={handler}>
+          <section className="grid grid-cols-12 items-center">
+            <div className="col-span-3">
+              <Label htmlFor="framework" className="font-bold text-[14px] text-slate-700 pb-2">
+                Upload images <span className="text-red-500">*</span>
+              </Label>
+            </div>
+            <div className="col-span-9 relative">
+              <ImageUploader setImageFiles={setImageFiles} condition="NewCategory" />
+              {imageFiles.length > 0 && imageFiles.map((imageSrc, index) => (
+                <div key={index} className="bg-white h-[90%] border rounded-xl absolute top-3 left-2">
+                  <img className="w-[200px] h-full rounded-xl" src={imageSrc} alt={`Uploaded image ${index}`} />
+                </div>
+              ))}
+            </div>
+          </section>
 
-        <Card className="w-full shadow-none  pt-7 ">
-    
-    <CardContent className=" space-y-10">
-    <section className="grid grid-cols-12 items-center">
-
-          <div className="col-span-3">
-          <Label htmlFor="name" className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>  Category Name
-          <span className="text-red-500 text-bold text-10px">*</span></Label>
-          </div>
-       <div className="col-span-9">
-       <Input id="name" placeholder="Category name" maxLength={20} className=" p-6 rounded-xl" style={{ fontFamily: 'var(--font-inter)' }} required name="categoryName" />
-       </div>
-            
-         
-        </section>
-
-        <section className="grid grid-cols-12 items-center">
-        <div className="col-span-3">
-       <Label htmlFor="framework" className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>Upload images 
-       <span className="text-red-500 text-bold text-10px">*</span> </Label>
-       </div>
-
-       <div className="col-span-9 relative">
-        <ImageUploader setImageFiles={setImageFiles} condition="NewCategory"/>
-       
-       
-      {/* Render new images if there are any in imageFiles */}
-      {imageFiles?.length > 0 && imageFiles.map((imageSrc: string, index: number) => (
-        <div key={index} className="bg-white h-[90%] border rounded-xl absolute top-3 left-2">
-          <img className="w-[200px] h-full rounded-xl" src={imageSrc} alt={`Uploaded image ${index}`} />
-        </div>
-      ))}
-       </div>
-        </section>
-
-        {/* <section className="grid grid-cols-12 items-center">
-        <div className="col-span-3">
-       <Label htmlFor="framework" className="font-bold text-[14px] text-slate-700 pb-2" style={{ fontFamily: 'var(--font-inter)' }}>Select category icon
-       <span className="text-red-500 text-bold text-10px">*</span> </Label>
-       </div>
-
-       <div className="col-span-9">
-       <Select required name="categoryIcon" >
-              <SelectTrigger id="framework" className=" p-6 rounded-xl">
-                <SelectValue placeholder="Select Icon" />
-              </SelectTrigger>
-              <SelectContent position="popper">
-                <SelectItem className=" hover:bg-blue-500 hover:text-white" value="Icon 1">Icon 1</SelectItem>
-                <SelectItem className=" hover:bg-blue-500 hover:text-white" value="Icon 2">Icon 2</SelectItem>
-                
-              </SelectContent>
-            </Select>
-       </div>
-        </section> */}
-
-      
-        <section className="grid grid-cols-12 items-center">
-        <div className="col-span-3">
-
-              </div>
-              <div className="col-span-9">
+          <section className="grid grid-cols-12 items-center">
+            <div className="col-span-9 col-start-4">
               <button
-                  type="submit"
-                  className="w-[200px] py-3.5 font-bold text-white text-[14px] bg-blue-500 hover:text-blue-500 hover:bg-white rounded-xl border-blue-500 border hover:border-blue-500 hover:shadow inline-flex space-x-2 items-center justify-center"
-                  style={{ fontFamily: 'var(--font-inter)' }}
-                >
-                  <span>Save</span>
-                </button>
-              </div>
-              </section>
-         
-
-          </CardContent>
-   
-   </Card>
-
-        </form>
+                type="button"
+                onClick={handler}
+                className="w-[200px] py-3.5 font-bold text-white bg-blue-500 hover:text-blue-500 hover:bg-white rounded-xl border border-blue-500 hover:shadow"
+              >
+                Save
+              </button>
+            </div>
+          </section>
+        </CardContent>
+      </Card>
     </div>
   );
 };

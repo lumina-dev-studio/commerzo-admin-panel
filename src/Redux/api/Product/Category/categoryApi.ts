@@ -8,6 +8,7 @@ export const categoryApi = baseApi.injectEndpoints({
         method: "GET",
        
       }),
+      providesTags: ["Category"],
     }),
     GetSingleCategory: build.query({
       query: (id) => ({
@@ -22,6 +23,7 @@ export const categoryApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Category"],
     }),
  
   }),
