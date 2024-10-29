@@ -4,7 +4,8 @@ import Table from "@/SharedComponent/Table/Table";
 
 
 const CategoryList = () => {
-  const {data,isLoading}=useGetSingleCategoryQuery('')
+  const {data,isLoading,refetch:categoryRefetch}=useGetSingleCategoryQuery('')
+
 
 
   if(isLoading){
@@ -23,7 +24,7 @@ const CategoryList = () => {
   return (
     <div className=" p-5">
         <h1 className=" text-2xl font-bold my-8 "> Manage Category  </h1>
-        <Table tableHead={tableHead} tableData={data?.data} condition='CategoryList'/>
+        <Table tableHead={tableHead} tableData={data?.data} condition='CategoryList' categoryRefetch={categoryRefetch}/>
      
    
     </div>

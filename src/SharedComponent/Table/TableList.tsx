@@ -17,7 +17,7 @@ import OrderTrackingTableList from "./OrderTrackingTableList";
 import AlluserTableList from "./AlluserTableList";
 
 
-const TableList = ({ tableHead, tableData,condition }: any) => {
+const TableList = ({ tableHead, tableData,condition, categoryRefetch }: any) => {
   return (
     <Table >
       <TableHeader>
@@ -164,7 +164,7 @@ const TableList = ({ tableHead, tableData,condition }: any) => {
       </TableBody>}  
 
     {condition==="CategoryList"&& <TableBody className="space-y-5">
-        {tableData?.map((item: any, index: number) => ( <CategoryTableList item={item} index={index}/>
+        {tableData?.map((item: any, index: number) => ( <CategoryTableList item={item} index={index} categoryRefetch={categoryRefetch}/>
           
         ))}
       </TableBody>}  

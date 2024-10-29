@@ -21,7 +21,7 @@ import { useRouter } from "next/navigation";
 import { PiFileTextLight } from "react-icons/pi";
 
 
-const Table = ({tableHead,tableData ,condition}:any) => {
+const Table = ({tableHead,tableData ,condition,categoryRefetch}:any) => {
   // State to manage the selected value
   const [selectedValue, setSelectedValue] = useState("10"); // Default value is set to "10"
 
@@ -88,7 +88,7 @@ const Table = ({tableHead,tableData ,condition}:any) => {
       </section>
 
       <section className=" my-10">
-      <TableList tableHead={tableHead}tableData={tableData} condition={condition}  />
+      <TableList tableHead={tableHead}tableData={tableData} condition={condition} categoryRefetch={categoryRefetch} />
       </section>
 
       <section >

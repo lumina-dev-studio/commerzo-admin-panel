@@ -1,3 +1,4 @@
+import DeleteCategoryModal from "@/components/Category/CategoryList/DeleteCategoryModal";
 import {
   
     TableCell,
@@ -7,9 +8,9 @@ import {
   import { IoFastFoodOutline } from "react-icons/io5";
   import { IoEyeOutline } from "react-icons/io5";
 import { LuPenLine } from "react-icons/lu";
-import { RiDeleteBinLine } from "react-icons/ri";
 
-const CategoryTableList = ({item,index}:any) => {
+
+const CategoryTableList = ({item,index,categoryRefetch}:any) => {
   return (
     <TableRow key={index} className={index % 2 === 1 ? "bg-gray-100 border-none" : " border-none"}>
             <TableCell
@@ -52,7 +53,9 @@ const CategoryTableList = ({item,index}:any) => {
                     <LuPenLine className=" text-green-500 text-[20px] cursor-pointer"/>
                  </section>
                  <section>
-                    <RiDeleteBinLine className=" text-red-500 text-[20px] cursor-pointer"/>
+
+                  <DeleteCategoryModal id={item?.id} categoryRefetch={categoryRefetch}/>
+                 
                  </section>
                
 
