@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useGetAllCategoryQuery } from "@/Redux/api/Product/Category/categoryApi";
+import { useCreateCategoryMutation, useGetAllCategoryQuery } from "@/Redux/api/Product/Category/categoryApi";
 
 import { Button } from "@/components/ui/button"
 import {
@@ -14,9 +14,14 @@ import {
 } from "@/components/ui/dialog"
 
 import NewCategoryFrom from "@/components/Category/NewCategory/NewCategoryForm";
+import { toast } from "sonner";
+import { useState } from "react";
 
 
 const Category = ({category,setCategory}:any) => {
+  const [imageFiles, setImageFiles] = useState([]);
+    const [categoryName, setCategoryName] = useState('');
+    const [createCategory] = useCreateCategoryMutation();
 
     const {data,isLoading}=useGetAllCategoryQuery('');
 
@@ -25,6 +30,36 @@ const Category = ({category,setCategory}:any) => {
         return <>Loading...</>
     }
     console.log(data?.data,'daya')
+
+    
+  
+    const handler = async (e:any) => {
+      e.preventDefault();
+  
+      if (imageFiles.length === 0) {
+        return toast.error("Please select at least one image.");
+      }
+  
+      const info = { categoryName, categoryImage: imageFiles[imageFiles.length - 1] };
+      console.log(info);
+  
+      try {
+        const createdData = await createCategory(info).unwrap();
+        if (createdData && createdData.success === true) {
+          toast.success(createdData?.message);
+          setCategoryName(''); // Clear the category name field
+          setImageFiles([]); // Clear the image files
+        }
+      } catch (error:any) {
+        console.log(error);
+        toast.error(error?.data?.message);
+      }
+    };
+
+
+
+
+
   return (
     <div>
       
@@ -67,7 +102,12 @@ const Category = ({category,setCategory}:any) => {
        
         </DialogHeader>
         <div className="grid gap-4 py-4">
-         <NewCategoryFrom/>
+         <NewCategoryFrom
+           imageFiles={imageFiles}
+           setImageFiles={setImageFiles}
+           categoryName={categoryName}
+           setCategoryName={setCategoryName}
+           handler={handler}/>
         </div>
         
       </DialogContent>

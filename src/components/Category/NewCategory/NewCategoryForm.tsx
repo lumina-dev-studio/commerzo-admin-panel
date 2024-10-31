@@ -8,37 +8,12 @@ import ImageUploader from "@/components/ImageUploader/ImageUploader"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useCreateCategoryMutation } from "@/Redux/api/Product/Category/categoryApi"
-import { useState } from "react"
-import { toast } from "sonner";
 
-const NewCategoryFrom = () => {
-  const [imageFiles, setImageFiles] = useState([]);
-  const [categoryName, setCategoryName] = useState('');
-  const [createCategory] = useCreateCategoryMutation();
 
-  const handler = async (e:any) => {
-    e.preventDefault();
+const NewCategoryFrom = ({condition,data,setCategoryName,categoryName,imageFiles,setImageFiles,handler}:any) => {
+ 
 
-    if (imageFiles.length === 0) {
-      return toast.error("Please select at least one image.");
-    }
-
-    const info = { categoryName, categoryImage: imageFiles[imageFiles.length - 1] };
-    console.log(info);
-
-    try {
-      const createdData = await createCategory(info).unwrap();
-      if (createdData && createdData.success === true) {
-        toast.success(createdData?.message);
-        setCategoryName(''); // Clear the category name field
-        setImageFiles([]); // Clear the image files
-      }
-    } catch (error:any) {
-      console.log(error);
-      toast.error(error?.data?.message);
-    }
-  };
+  
 
   return (
     <div>
@@ -59,7 +34,7 @@ const NewCategoryFrom = () => {
                 className="p-6 rounded-xl"
                 required
                 name="categoryName"
-                value={categoryName}
+                value={condition === 'updateCategory'? categoryName || data?.categoryName :categoryName}
               />
             </div>
           </section>
@@ -71,12 +46,44 @@ const NewCategoryFrom = () => {
               </Label>
             </div>
             <div className="col-span-9 relative">
+
+
               <ImageUploader setImageFiles={setImageFiles} condition="NewCategory" />
-              {imageFiles.length > 0 && imageFiles.map((imageSrc, index) => (
+
+              {condition === 'updateCategory' ? (
+  imageFiles?.length > 0 ? (
+    imageFiles.map((imageSrc: any, index: any) => (
+      <div key={index} className="bg-white h-[90%] border rounded-xl absolute top-3 left-2">
+        <img className="w-[200px] h-full rounded-xl" src={imageSrc} alt={`Uploaded image ${index}`} />
+      </div>
+    ))
+  ) : (
+    <div className="bg-white h-[90%] border rounded-xl absolute top-3 left-2">
+      <img className="w-[200px] h-full rounded-xl" src={data?.categoryImage} alt="Uploaded image" />
+    </div>
+  )
+) : (
+  imageFiles?.length > 0 &&
+  imageFiles.map((imageSrc: any, index: any) => (
+    <div key={index} className="bg-white h-[90%] border rounded-xl absolute top-3 left-2">
+      <img className="w-[200px] h-full rounded-xl" src={imageSrc} alt={`Uploaded image ${index}`} />
+    </div>
+  ))
+)}
+
+
+
+
+
+              {/* {imageFiles?.length > 0 ? imageFiles.map((imageSrc:any, index:any) => (
                 <div key={index} className="bg-white h-[90%] border rounded-xl absolute top-3 left-2">
                   <img className="w-[200px] h-full rounded-xl" src={imageSrc} alt={`Uploaded image ${index}`} />
                 </div>
-              ))}
+              )): <div  className="bg-white h-[90%] border rounded-xl absolute top-3 left-2">
+              <img className="w-[200px] h-full rounded-xl" src={data?.categoryImage} alt={`Uploaded image `} />
+            </div> } */}
+
+
             </div>
           </section>
 

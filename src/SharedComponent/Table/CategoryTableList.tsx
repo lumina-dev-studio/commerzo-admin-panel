@@ -5,12 +5,21 @@ import {
     
     TableRow,
   } from "@/components/ui/table";
+import { useRouter } from "next/navigation";
   import { IoFastFoodOutline } from "react-icons/io5";
   import { IoEyeOutline } from "react-icons/io5";
 import { LuPenLine } from "react-icons/lu";
 
 
 const CategoryTableList = ({item,index,categoryRefetch}:any) => {
+
+  const router =useRouter()
+
+  const handler=()=>{
+
+    router.push(`/product/updateCategory/${item?.id}`)
+
+  }
   return (
     <TableRow key={index} className={index % 2 === 1 ? "bg-gray-100 border-none" : " border-none"}>
             <TableCell
@@ -50,7 +59,7 @@ const CategoryTableList = ({item,index,categoryRefetch}:any) => {
                     <IoEyeOutline className=" text-blue-500 text-[20px] cursor-pointer"/>
                  </section>
                  <section>
-                    <LuPenLine className=" text-green-500 text-[20px] cursor-pointer"/>
+                    <LuPenLine onClick={handler} className=" text-green-500 text-[20px] cursor-pointer"/>
                  </section>
                  <section>
 
