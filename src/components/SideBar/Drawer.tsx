@@ -1,8 +1,8 @@
 'use client';
 
-import { RootState } from '@/Redux/store';
+import {RootState} from '@/Redux/store';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import {useSelector} from 'react-redux';
 
 
 import DashboardDropdown from './DashboardDropdown';
@@ -23,44 +23,40 @@ import SocialMediaDropdown from './SocialMediaDropdown';
 import ProductDropdown from './ProductDropdown';
 
 const Sidebar: React.FC = () => {
-  const isOpen = useSelector((state: RootState) => state.navBar.sidebarToggle);
+    const isOpen = useSelector((state: RootState) => state.navBar.sidebarToggle);
 
-  return (
-    <div className="flex  ">
-      {/* Sidebar */}
-      <aside
-        className={`fixed top-0 left-0 z-0 w-64 h-full overflow-y-auto no-scrollbar transition-all duration-500 transform pt-20 ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        } bg-gray-50 dark:bg-gray-800 shadow-lg`}
-        aria-label="Sidebar"
-      >
-        <div className="px-3 py-4 rounded h-full  ">
-          <ul className="space-y-2">
-            <DashboardDropdown />
-        
-            <ProductDropdown />
-         
-            <AttributesDropdown />
-            <OrderDropDown />
-            <UserDropDown />
-            <RolesDropdown />
-            <GalleryDropdown />
-            <ReportDropdown />
-            <LocationDropdown />
-            <SettingDropdown />
-            <PagesDropdown />
-            <ComponentsDropdown />
-            <HelpCenterDropdown />
-            <FAQSDropdown />
-            <PrivacyPolicy />
-            <SocialMediaDropdown />
-            
-
-          </ul>
+    return (
+        <div className="flex  ">
+            {/* Sidebar */}
+            <aside
+                className={`fixed top-0 left-0 z-0 w-64 h-full overflow-y-auto no-scrollbar transition-all duration-500 transform pt-20 ${
+                    isOpen ? 'translate-x-0' : '-translate-x-full'
+                } bg-gray-50 dark:bg-gray-800 shadow-lg`}
+                aria-label="Sidebar"
+            >
+                <div className="px-3 py-4 rounded h-full  ">
+                    <ul className="space-y-2">
+                        <DashboardDropdown/>
+                        <ProductDropdown/>
+                        <AttributesDropdown/>
+                        <OrderDropDown/>
+                        <UserDropDown/>
+                        <RolesDropdown/>
+                        <GalleryDropdown/>
+                        <ReportDropdown/>
+                        <LocationDropdown/>
+                        <SettingDropdown/>
+                        <PagesDropdown/>
+                        <ComponentsDropdown/>
+                        <HelpCenterDropdown/>
+                        <FAQSDropdown/>
+                        <PrivacyPolicy/>
+                        <SocialMediaDropdown/>
+                    </ul>
+                </div>
+            </aside>
         </div>
-      </aside>
-    </div>
-  );
+    );
 };
 
 export default Sidebar;
