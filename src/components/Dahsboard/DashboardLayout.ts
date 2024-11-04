@@ -11,9 +11,11 @@ import { useEffect } from "react";
 // Layout component for Dashboard
 const DashBoardLayout = ({ children }: any) => {
   const router = useRouter();
-
+ 
   useEffect(() => {
+    
     if (!isLoggedIn()) {
+      console.log('hello')
       router.push("/login");
     }
   }, [router, children]);

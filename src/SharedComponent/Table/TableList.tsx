@@ -30,6 +30,7 @@ const TableList = ({ tableHead, tableData,condition, categoryRefetch }: any) => 
               style={{ fontFamily: "var(--font-inter)" }}
               className={`text-[15px] bg-gray-100 p-3 text-gray-900 font-bold 
               ${index === 0 ? " rounded-s-xl   " : ""}
+              
               ${index === 2 ? "w-[220px]   " : ""}
               ${index === 6 ? " text-center  " : ""}
               

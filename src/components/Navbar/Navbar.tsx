@@ -11,6 +11,7 @@ import NavBarSidebarButton from "./NavBarSidebarButton/NavBarSidebarButton";
 import NavbarUserOption from "./NavbarUserOption/NavbarUserOption";
 import SearchNavBar from "./SearchNavBar/SearchNavBar";
 import { RootState } from "@/Redux/store";
+import NavbarLogOut from "./NavbarLogOut/NavbarLogOut";
 
 
 const Navbar = () => {
@@ -42,7 +43,7 @@ const Navbar = () => {
    <NavbarFullScreen/>
    <NavbarOption/>
   
-   
+   <NavbarLogOut/>
   </div>
 
   

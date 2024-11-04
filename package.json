@@ -24,6 +24,7 @@
     "date-fns": "^3.6.0",
     "install": "^0.13.0",
     "jodit-react": "^4.1.2",
+    "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.447.0",
     "next": "15.0.2",
@@ -42,6 +43,7 @@
     "vaul": "^1.0.0"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
     "@types/react": "npm:types-react@19.0.0-rc.1",

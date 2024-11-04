@@ -12,7 +12,7 @@ const ProductList = () => {
     }
 
     console.log(data, 'data')
-    const tableHead = ["Product	", "Product ID", , "Price", "Quantity", "Sale", "Stock", "Start date", "Action"]
+    const tableHead = ["Product	", "Product ID", , "Price", "Category", "Variants", "Action"]
     const tableData = [
         {
             Product: "Dog Food, Chicken & Chicken Liver Recipe...",
@@ -68,7 +68,7 @@ const ProductList = () => {
     return (
         <div className=" p-5">
             <h1 className=" text-2xl font-bold my-8 ">Manage Product </h1>
-            <Table tableHead={tableHead} tableData={tableData} condition='ProductList'/>
+            <Table tableHead={tableHead} tableData={data?.data} condition='ProductList'/>
         </div>
     );
 };

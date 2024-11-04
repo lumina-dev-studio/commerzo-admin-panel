@@ -19,11 +19,11 @@ const ProductTableList = ({item,index}:any) => {
                 <div>
                   <img
                     className="h-[50px] w-[50px] text-[15px] font-bold bg-gray-900"
-                    src={item?.image}
+                    src={item?.productMediaImages[0]?.imageUrl}
                     alt=""
                   />
                 </div>
-                <div className="hover:text-blue-500 cursor-pointer">{item?.Product}</div>
+                <div className="hover:text-blue-500 cursor-pointer">{item?.title}</div>
               </div>
             </TableCell>
 
@@ -31,7 +31,7 @@ const ProductTableList = ({item,index}:any) => {
               className="text-[13px] font-medium text-gray-600 p-3"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              {item?.["Product ID"]}
+              {item?.id}
             </TableCell>
             <TableCell
               className="text-[13px] font-medium text-gray-600 p-3"
@@ -43,28 +43,15 @@ const ProductTableList = ({item,index}:any) => {
               className="text-[13px] font-medium text-gray-600 p-3"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              {item?.Quantity}
+              {item?.category}
             </TableCell>
             <TableCell
               className="text-[13px] font-medium text-gray-600 p-3"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              {item?.Sale}
+              {item?.productVariants?.length              }
             </TableCell>
-            <TableCell
-              className="text-[13px] font-medium text-gray-600 p-3"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              <span className="bg-orange-50 text-red-500 p-1.5 rounded-md">
-                {item?.Stock}
-              </span>
-            </TableCell>
-            <TableCell
-              className="text-[13px] font-medium text-gray-600 p-3"
-              style={{ fontFamily: "var(--font-inter)" }}
-            >
-              {item?.StartDate}
-            </TableCell>
+          
             <TableCell
               className="text-[13px] font-medium text-gray-600 p-3"
               style={{ fontFamily: "var(--font-inter)" }}

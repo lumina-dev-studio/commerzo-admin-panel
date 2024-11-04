@@ -2,8 +2,9 @@
 import { getUserInfo } from "@/Services/Action/auth.service";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const baseQuery = fetchBaseQuery({
-    baseUrl: process.env.API_URL,
-    // baseUrl: "https://sass-project-server-side.vercel.app/api",
+    baseUrl: "http://localhost:9000/api",
+    // baseUrl: process.env.API_URL,
+    
     credentials: "include",
     prepareHeaders: (headers) => {
       const token = getUserInfo();

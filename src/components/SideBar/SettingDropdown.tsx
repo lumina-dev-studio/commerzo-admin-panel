@@ -4,7 +4,7 @@ import {IoSettingsOutline} from "react-icons/io5";
 
 const SettingDropdown = () => {
     return (
-        <Link href="#"
+        <Link href="/setting"
               type="button"
               className="flex hover:text-blue-500 items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-50  dark:text-white dark:hover:bg-gray-700"
         >
