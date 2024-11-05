@@ -6,6 +6,7 @@ import "./globals.css";
 import Providers from "@/Providers/Providers";
 import { Toaster } from "@/components/ui/sonner";
 
+
 // Load Inter font from Google Fonts
 const inter = Inter({
   subsets: ['latin'], // Specify the subsets you need

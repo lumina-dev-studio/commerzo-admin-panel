@@ -1,74 +1,21 @@
 "use client"
 import {useGetUserAllProductQuery} from "@/Redux/api/Product/productApi";
 import Table from "@/SharedComponent/Table/Table";
+import Skeleton from "react-loading-skeleton";
 
 
 const ProductList = () => {
 
     const {data, isLoading} = useGetUserAllProductQuery('')
 
-    if (isLoading) {
-        return <>loading</>
-    }
-
+   
     console.log(data, 'data')
     const tableHead = ["Product	", "Product ID", , "Price", "Category", "Variants", "Action"]
-    const tableData = [
-        {
-            Product: "Dog Food, Chicken & Chicken Liver Recipe...",
-            price: "$1,452.500",
-            image: "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            "Product ID": "#7712309",
-            Quantity: "1,638",
-            Sale: 50,
-            Stock: "Out of stock",
-            StartDate: "02/03/2024"
-        },
-        {
-            Product: "Grain Free Dry Dog Food | Rachael Ray® Nutrish®",
-            price: "$1,452.500",
-            image: "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            "Product ID": "#7712309",
-            Quantity: "1,638",
-            Sale: 70,
-            Stock: "Out of stock",
-            StartDate: "02/03/2024"
-        },
-        {
-            Product: "Weruva Pumpkin Patch Up! Pumpkin With Ginger...",
-            price: "$1,452.500",
-            image: "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            "Product ID": "#7712309",
-            Quantity: "1,638",
-            Sale: 40,
-            Stock: "Out of stock",
-            StartDate: "02/03/2024"
-        },
-        {
-            Product: "Edward King",
-            price: "$1,452.500",
-            image: "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            "Product ID": "#7712309",
-            Quantity: "1,638",
-            Sale: 55,
-            Stock: "Out of stock",
-            StartDate: "02/03/2024"
-        },
-        {
-            Product: "Jim Red",
-            price: "$1,452.500",
-            image: "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-            "Product ID": "#7712309",
-            Quantity: "1,638",
-            Sale: 35,
-            Stock: "Out of stock",
-            StartDate: "02/03/2024"
-        },
-    ];
+  
     return (
         <div className=" p-5">
-            <h1 className=" text-2xl font-bold my-8 ">Manage Product </h1>
-            <Table tableHead={tableHead} tableData={data?.data} condition='ProductList'/>
+            <h1 className=" text-2xl font-bold my-8 ">{isLoading?<Skeleton width={200} height={30} />:"Manage Product "}</h1>
+            <Table tableHead={tableHead} tableData={data?.data} condition='ProductList' isLoading={isLoading}/>
         </div>
     );
 };
