@@ -13,6 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { toast } from 'sonner';
+import Skeleton from 'react-loading-skeleton';
 
 const UpdateProfile = () => {
   const { data, isLoading, refetch } = useGetSingleQuery('');
@@ -20,9 +21,7 @@ const UpdateProfile = () => {
 
   const [updateFunction] = useUpdateProfileMutation();
 
-  if (isLoading) {
-    return <>... loading</>;
-  }
+ 
 console.log(data?.data?.image)
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -86,19 +85,21 @@ console.log(data?.data?.image)
           <div className="grid grid-cols-12 bg-white rounded-xl p-6 gap-10">
             <section className="col-span-5">
               <h3 className="text-[20px] font-bold" style={{ fontFamily: 'var(--font-inter)' }}>
-                Account
+                {isLoading?<Skeleton  width={100}/>:"Account"}  
               </h3>
               <p className="text-[14px] text-gray-500" style={{ fontFamily: 'var(--font-inter)' }}>
-                Fill in the information below to update your account
+              
+                 {isLoading?<Skeleton  width={300}/>:"  Fill in the information below to update your account"}
               </p>
 
               
                <div className=' h-[80%] mx-auto mt-10 mb-2'>
-               <img
+               {isLoading?<Skeleton  width={400} height={500} borderRadius={8}/>:  <img
                     className="w-full h-full  rounded-xl"
                     src={data?.data?.image || 'https://images.pexels.com/photos/27545223/pexels-photo-27545223/free-photo-of-model-in-sweater-lying-on-grass.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}
                     alt="Uploaded image"
-                  />
+                  />}
+             
                </div>
               
               
@@ -106,11 +107,12 @@ console.log(data?.data?.image)
                 <div>
       <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Set Photo</Button>
+      {isLoading?<Skeleton  width={100} height={30} borderRadius={8}/>:<Button variant="outline">Set Photo</Button>}
+        
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Add Category</DialogTitle>
+          <DialogTitle>Set image</DialogTitle>
        
         </DialogHeader>
         <div className="grid gap-4 py-4">
@@ -154,9 +156,11 @@ console.log(data?.data?.image)
                     className="font-bold text-[14px] text-slate-700 pb-2"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
-                    Name
+                    
+                    {isLoading?<Skeleton  width={100}/>:"  Name"}
+                    
                   </p>
-                  <input
+                  {isLoading?<Skeleton height={45} borderRadius={8} />:  <input
                     style={{ fontFamily: 'var(--font-inter)' }}
                     id="userName"
                     name="userName"
@@ -165,7 +169,8 @@ console.log(data?.data?.image)
                     placeholder="User name"
                     defaultValue={data?.data?.name}
               
-                  />
+                  />}
+                
                        
                 </section>
 
@@ -177,8 +182,10 @@ console.log(data?.data?.image)
                   className="font-bold text-[14px] text-slate-700 pb-2"
                   style={{ fontFamily: 'var(--font-inter)' }}
                 >
-                  Email
+                  {isLoading?<Skeleton  width={100}/>:"  Email"}
+                  
                 </p>
+                {isLoading?<Skeleton height={45} borderRadius={8} />:
                 <input
                   id="email"
                   name="email"
@@ -187,7 +194,7 @@ console.log(data?.data?.image)
                   placeholder="Email"
                   defaultValue={data?.data?.email}
               
-                />
+                />}
               </div>
 
               <div className="flex flex-col space-y-7">
@@ -196,8 +203,10 @@ console.log(data?.data?.image)
                     className="font-bold text-[14px] text-slate-700 pb-2"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
-                    Phone Number
+                    {isLoading?<Skeleton  width={100}/>:"    Phone Number"}
+                  
                   </p>
+                  {isLoading?<Skeleton height={45} borderRadius={8} />:
                   <input
                     style={{ fontFamily: 'var(--font-inter)' }}
                     id="phoneNumber"
@@ -207,7 +216,7 @@ console.log(data?.data?.image)
                     placeholder="Phone number"
                     defaultValue={data?.data?.phoneNumber}
                    
-                  />
+                  />}
                 </section>
               </div>
 
@@ -217,8 +226,10 @@ console.log(data?.data?.image)
                     className="font-bold text-[14px] text-slate-700 pb-2"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
-                    Address
+                    {isLoading?<Skeleton  width={100}/>:"     Addressr"}
+                  
                   </p>
+                  {isLoading?<Skeleton height={45} borderRadius={8} />:
                   <input
                     style={{ fontFamily: 'var(--font-inter)' }}
                     id="address"
@@ -228,7 +239,7 @@ console.log(data?.data?.image)
                     placeholder="Address"
                     defaultValue={data?.data?.address}
                    
-                  />
+                  />}
                 </section>
               </div>
               <div className="flex flex-col space-y-7">
@@ -237,8 +248,10 @@ console.log(data?.data?.image)
                     className="font-bold text-[14px] text-slate-700 pb-2"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
-                    Facebook
+                    {isLoading?<Skeleton  width={100}/>:"  Facebook"}
+                    
                   </p>
+                  {isLoading?<Skeleton height={45} borderRadius={8} />:
                   <input
                     style={{ fontFamily: 'var(--font-inter)' }}
                     id="facbook"
@@ -248,7 +261,7 @@ console.log(data?.data?.image)
                     placeholder="FaceBook link"
                     defaultValue={data?.data?.facebook}
                    
-                  />
+                  />}
                 </section>
               </div>
               <div className="flex flex-col space-y-7">
@@ -257,8 +270,10 @@ console.log(data?.data?.image)
                     className="font-bold text-[14px] text-slate-700 pb-2"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
-                    Instagram
+                     {isLoading?<Skeleton  width={100}/>:"  Instagram"}
+                
                   </p>
+                  {isLoading?<Skeleton height={45} borderRadius={8} />:
                   <input
                     style={{ fontFamily: 'var(--font-inter)' }}
                     id="instagram"
@@ -268,7 +283,7 @@ console.log(data?.data?.image)
                     placeholder="Instagram link"
                     defaultValue={data?.data?.instagram}
                    
-                  />
+                  />}
                 </section>
               </div>
               <div className="flex flex-col space-y-7">
@@ -277,8 +292,10 @@ console.log(data?.data?.image)
                     className="font-bold text-[14px] text-slate-700 pb-2"
                     style={{ fontFamily: 'var(--font-inter)' }}
                   >
-                    Tiktok
+                     {isLoading?<Skeleton  width={100}/>:"  Tiktok"}
+                    
                   </p>
+                  {isLoading?<Skeleton height={45} borderRadius={8} />:
                   <input
                     style={{ fontFamily: 'var(--font-inter)' }}
                     id="tiktok"
@@ -288,7 +305,7 @@ console.log(data?.data?.image)
                     placeholder="Tiktok link"
                     defaultValue={data?.data?.tiktok}
                    
-                  />
+                  />}
                 </section>
               </div>
             </section>
@@ -296,13 +313,15 @@ console.log(data?.data?.image)
         </section>
 
         <section>
-          <button
+        {isLoading?<Skeleton  width={200}  height={40} borderRadius={8}/>:     <button
             type="submit"
             className="w-[200px] py-3 font-bold text-white text-[14px] bg-blue-500 hover:text-blue-500 hover:bg-white rounded-xl border-blue-500 border hover:border-blue-500 hover:shadow inline-flex space-x-2 items-center justify-center"
             style={{ fontFamily: 'var(--font-inter)' }}
           >
+            
             <span>Save</span>
-          </button>
+          </button>}
+     
         </section>
       </form>
 

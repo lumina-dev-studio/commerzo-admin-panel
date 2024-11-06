@@ -3,7 +3,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import { LuPenLine } from "react-icons/lu";
 import { RiDeleteBinLine } from "react-icons/ri";
 import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+
 
 const AlluserTableList = ({ item, index, isLoading }:any) => {
   return (
@@ -13,7 +13,7 @@ const AlluserTableList = ({ item, index, isLoading }:any) => {
         <div className="flex items-center gap-5 p-3 rounded-2xl">
           {isLoading ? (
             <>
-              <Skeleton circle={true} height={50} width={50} />
+              <Skeleton height={50} width={50} borderRadius={8} />
               <Skeleton width={100} />
             </>
           ) : (

@@ -14,7 +14,7 @@ const ProductTableList = ({ item, index, isLoading }: any) => {
         <div className="flex items-center gap-5 p-3 rounded-2xl">
           <div>
             {isLoading ? (
-              <Skeleton circle={true} height={50} width={50} />
+              <Skeleton height={50} width={50} borderRadius={8} />
             ) : (
               <img
                 className="h-[50px] w-[50px] text-[15px] font-bold bg-gray-900"

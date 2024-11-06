@@ -72,8 +72,7 @@ const TableList = ({ tableHead, tableData,condition, categoryRefetch ,isLoading}
 )}
 
 
- 
-       {condition==="CategoryList" && <TableRow>
+{/* {condition==="CategoryList" && <TableRow>
           {tableHead?.map((head: string, index: number) => (
             <TableHead
               key={index}
@@ -89,7 +88,35 @@ const TableList = ({ tableHead, tableData,condition, categoryRefetch ,isLoading}
               {head}
             </TableHead>
           ))}
-        </TableRow>}
+        </TableRow>} */}
+
+
+
+ {condition === "CategoryList" && (
+  isLoading ? (
+    <Skeleton width="100%" height={30} />
+  ) : (
+    <TableRow>
+      {tableHead?.map((head: string, index: number) => (
+        <TableHead
+          key={index}
+          style={{ fontFamily: "var(--font-inter)" }}
+          className={`text-[15px] bg-gray-100 p-3 text-gray-900 font-bold 
+            ${index === 2 ? "w-[220px]" : ""} 
+            ${index === 0 ? "rounded-s-xl" : ""} 
+            ${index === 6 ? "ps-8" : ""} 
+          `}
+        >
+          {head}
+        </TableHead>
+      ))}
+    </TableRow>
+  )
+)}
+
+
+ 
+    
 
        {condition==="OrderList" && <TableRow>
           {tableHead?.map((head: string, index: number) => (
@@ -235,12 +262,36 @@ const TableList = ({ tableHead, tableData,condition, categoryRefetch ,isLoading}
   </TableBody>
 )}
 
-
+{/* 
     {condition==="CategoryList"&& <TableBody className="space-y-5">
         {tableData?.map((item: any, index: number) => ( <CategoryTableList item={item} index={index} categoryRefetch={categoryRefetch}/>
           
         ))}
-      </TableBody>}  
+      </TableBody>}   */}
+
+
+{condition === "CategoryList" && (
+  <TableBody className="space-y-5">
+    {isLoading ? (
+      // Render skeleton rows if loading
+      Array.from({ length: 5 }).map((_, index) => (
+        <CategoryTableList key={index} isLoading={true} />
+      ))
+    ) : (
+      // Render actual category rows when not loading
+      tableData?.map((item: any, index: number) => (
+        <CategoryTableList
+          key={item?.id || index} // Ensure a unique key for each item
+          item={item}
+          index={index}
+          isLoading={false} // Pass false to indicate data has loaded
+          categoryRefetch={categoryRefetch}
+        />
+      ))
+    )}
+  </TableBody>
+)}
+  
 
 
     {condition==="Attributes"&& <TableBody className="space-y-5">
