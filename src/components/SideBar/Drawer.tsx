@@ -21,6 +21,7 @@ import FAQSDropdown from './FAQSDropdown';
 import PrivacyPolicy from './PrivacyPolicy';
 import SocialMediaDropdown from './SocialMediaDropdown';
 import ProductDropdown from './ProductDropdown';
+import ThemeDropDown from './ThemeDropdown';
 
 const Sidebar: React.FC = () => {
     const isOpen = useSelector((state: RootState) => state.navBar.sidebarToggle);
@@ -46,12 +47,14 @@ const Sidebar: React.FC = () => {
                         <ReportDropdown/>
                         <LocationDropdown/>
                         <SettingDropdown/>
+                        <ThemeDropDown/>
                         <PagesDropdown/>
                         <ComponentsDropdown/>
                         <HelpCenterDropdown/>
                         <FAQSDropdown/>
                         <PrivacyPolicy/>
                         <SocialMediaDropdown/>
+                        
                     </ul>
                 </div>
             </aside>
