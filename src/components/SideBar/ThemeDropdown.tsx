@@ -58,6 +58,15 @@ const ThemeDropDown = () => {
             <BsDiamond className={`${location==='/theme/storeTheme/navigation'?"font-bold":" opacity-50"} text-[10px] mr-2`}  /> Navigation
           </Link>
         </li>
+        <li>
+          <Link
+            href="/theme/storeTheme/logo"
+            className={`${location==='/theme/storeTheme/logo'?"text-blue-500":"text-gray-600 "} flex items-center w-full p-2 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 pl-11 text-[15px] font-semibold hover:text-blue-500`}
+            style={{ fontFamily: 'var(--font-inter)' }}
+          >
+            <BsDiamond className={`${location==='/theme/storeTheme/logo'?"font-bold":" opacity-50"} text-[10px] mr-2`}  /> Logo
+          </Link>
+        </li>
       </ul>
     </li>
   );

@@ -1,168 +1,262 @@
 'use client'
-import { useState } from "react";
 
-const MenuEditor = () => {
-  const [menuItems, setMenuItems] = useState([
-    { id: 1, label: "Home", link: "/" },
-    { id: 2, label: "Catalog", link: "/catalog" },
-    { id: 3, label: "Contact", link: "/contact" },
-  ]);
+import { useState } from 'react';
+import { FaBox, FaShoppingCart, FaLaptop, FaMobileAlt, FaTshirt, FaGamepad, FaHamburger, FaGift, FaCar, FaHome } from 'react-icons/fa';
+import { GiClothes, GiGamepad, GiMeal, GiPresent, GiCarWheel, GiFishingPole, GiPineTree, GiHouse, GiHamburgerMenu } from 'react-icons/gi';
+import { MdPhoneIphone, MdComputer } from 'react-icons/md';
+import Link from 'next/link';  // <-- Import Link here
 
-  const [editingItem, setEditingItem] = useState(null);
-  const [newLabel, setNewLabel] = useState("");
-  const [newLink, setNewLink] = useState("");
+const Navigation = () => {
+  const [categories, setCategories] = useState<any[]>([]);
+  const [categoryName, setCategoryName] = useState('');
+  const [subCategoryName, setSubCategoryName] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
+  const [selectedCategoryIcon, setSelectedCategoryIcon] = useState(<FaBox />);
+  const [selectedSubCategoryIcon, setSelectedSubCategoryIcon] = useState(<FaShoppingCart />);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showCategoryIconDropdown, setShowCategoryIconDropdown] = useState(false);
+  const [showSubCategoryIconDropdown, setShowSubCategoryIconDropdown] = useState(false);
 
-  // Function to handle edit
-  const startEdit = (item) => {
-    setEditingItem(item.id);
-    setNewLabel(item.label);
-    setNewLink(item.link);
+  // React Icons for categories and subcategories
+  const icons = [
+    { icon: '', label: 'For sub Navigation' },
+    { icon: <FaBox />, label: 'Box' },
+    { icon: <FaShoppingCart />, label: 'Shopping Cart' },
+    { icon: <FaLaptop />, label: 'Laptop' },
+    { icon: <FaMobileAlt />, label: 'Smartphone' },
+    { icon: <FaTshirt />, label: 'Clothing' },
+    { icon: <FaGamepad />, label: 'Gaming' },
+    { icon: <FaHamburger />, label: 'Food' },
+    { icon: <FaGift />, label: 'Gift' },
+    { icon: <FaCar />, label: 'Car' },
+    { icon: <FaHome />, label: 'Home' },
+    { icon: <GiClothes />, label: 'Clothing' },
+    { icon: <GiGamepad />, label: 'Gaming' },
+    { icon: <GiMeal />, label: 'Meal' },
+    { icon: <GiPresent />, label: 'Gift' },
+    { icon: <GiCarWheel />, label: 'Car' },
+    { icon: <GiFishingPole />, label: 'Fishing' },
+    { icon: <GiPineTree />, label: 'Tree' },
+    { icon: <GiHouse />, label: 'House' },
+    { icon: <GiHamburgerMenu />, label: 'Food' },
+    { icon: <MdPhoneIphone />, label: 'Smartphone' },
+    { icon: <MdComputer />, label: 'Computer' },
+    // Add more icons as needed...
+  ];
+
+  // Handle adding categories
+  const handleAddCategory = () => {
+    if (!categoryName || selectedCategoryIcon === null) return;  // Ensure icon is selected
+
+    const newCategory = {
+      id: Date.now(),
+      name: categoryName,
+      slug: categoryName.toLowerCase().replace(/\s+/g, '-'),
+      children: [],
+      icon: selectedCategoryIcon,
+    };
+
+    setCategories([...categories, newCategory]);
+    setCategoryName('');
+    console.log('Added Category:', newCategory); // Log the added category
   };
 
-  // Function to save edit
-  const saveEdit = () => {
-    setMenuItems(
-      menuItems.map((item) =>
-        item.id === editingItem ? { ...item, label: newLabel, link: newLink } : item
+  // Handle adding subcategories under a category
+  const handleAddSubCategory = () => {
+    if (!subCategoryName || selectedCategoryId === null || selectedSubCategoryIcon === null) return;  // Ensure icon and category are selected
+
+    setCategories((prevCategories) =>
+      prevCategories.map((category) =>
+        category.id === selectedCategoryId
+          ? {
+              ...category,
+              children: [
+                ...category.children,
+                {
+                  id: Date.now(),
+                  name: subCategoryName,
+                  slug: subCategoryName.toLowerCase().replace(/\s+/g, '-'),
+                  icon: selectedSubCategoryIcon,
+                },
+              ],
+            }
+          : category
       )
     );
-    setEditingItem(null);
-    setNewLabel("");
-    setNewLink("");
+    setSubCategoryName('');
+    setSelectedCategoryId(null); // Reset the selected category
+    console.log('Added Subcategory:', subCategoryName); // Log the added subcategory
   };
 
-  // Function to delete menu item
-  const deleteItem = (id) => {
-    setMenuItems(menuItems.filter((item) => item.id !== id));
-  };
+  // Filter categories and subcategories based on the search term
+  const filteredCategories = categories.filter((category) =>
+    category.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    category.children.some((child: any) =>
+      child.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  );
 
-  // Function to add new menu item
-  const addItem = () => {
-    if (newLabel && newLink) {
-      setMenuItems([
-        ...menuItems,
-        { id: Date.now(), label: newLabel, link: newLink },
-      ]);
-      setNewLabel("");
-      setNewLink("");
-    }
+  // Log filtered categories
+  console.log('Filtered Categories:', filteredCategories);
+
+  // Recursive function to render categories and subcategories with nested URL
+  const renderNavigation = (items: any[]) => {
+    return (
+      <ul className="space-y-4">
+        {items.map((item) => (
+          <li key={item.id} className="pl-4">
+            <Link href={`/${item.slug}`} className="text-lg font-semibold text-gray-800 hover:text-blue-600">
+              <span className="mr-2">{item?.icon}</span>
+              {item?.name}
+            </Link>
+            {item.children && item.children.length > 0 && (
+              <div className="mt-2 ml-4">
+                {/* Render subcategories with nested URLs */}
+                {renderNavigation(item.children.map((child: any) => ({
+                  ...child,
+                  slug: `${item.slug}/${child.slug}`, // Append subcategory slug to parent slug
+                })))}
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    );
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md">
-      {/* Header */}
-      <h1 className="text-2xl font-semibold mb-4">Main Menu</h1>
+    <div>
+      {/* Sidebar */}
+      <div className="w-[50%] mx-auto my-40">
+        <button
+          className="md:hidden text-xl text-gray-800 mb-6"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        >
+          {isSidebarOpen ? 'Close Menu' : 'Open Menu'}
+        </button>
 
-      {/* Name and Handle */}
-      <div className="mb-6">
-        <label className="block font-medium mb-1 text-gray-700">Name</label>
-        <input
-          type="text"
-          defaultValue="Main menu"
-          className="w-full p-2 border rounded-md"
-          disabled
-        />
-        <span className="text-sm text-gray-500">Handle: main-menu</span>
-      </div>
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">Shop Navigation</h2>
 
-      {/* Menu Items */}
-      <div>
-        <h2 className="text-lg font-semibold mb-2">Menu items</h2>
-        <div className="space-y-4">
-          {menuItems.map((item) => (
-            <div
-              key={item.id}
-              className="border p-4 rounded-md shadow-sm relative bg-gray-50"
-            >
-              {/* Editable or Static State */}
-              {editingItem === item.id ? (
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="text"
-                    value={newLabel}
-                    onChange={(e) => setNewLabel(e.target.value)}
-                    className="flex-1 p-2 border rounded-md"
-                    placeholder="Label"
-                  />
-                  <input
-                    type="text"
-                    value={newLink}
-                    onChange={(e) => setNewLink(e.target.value)}
-                    className="flex-1 p-2 border rounded-md"
-                    placeholder="Link"
-                  />
-                  <button
-                    onClick={saveEdit}
-                    className="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600"
-                  >
-                    Save
-                  </button>
-                </div>
-              ) : (
-                <div className="flex justify-between items-center">
-                  <div>
-                    <p className="font-medium text-gray-800">{item.label}</p>
-                    <p className="text-sm text-gray-500">{item.link}</p>
-                  </div>
-                  <div className="space-x-2">
+        {/* Render Categories dynamically */}
+        {renderNavigation(filteredCategories)}
+
+        {/* Add Category Form */}
+        <div className="mt-6">
+          <h3 className="font-semibold text-gray-800">Add Category</h3>
+          <input
+            type="text"
+            value={categoryName}
+            onChange={(e) => setCategoryName(e.target.value)}
+            placeholder="Category Name"
+            className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+          />
+
+          {/* Custom Icon Selector for Category */}
+          <div className="mt-2">
+            <label className="font-semibold text-gray-800">Select Category Icon:</label>
+            <div className="relative">
+              <button
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                onClick={() => setShowCategoryIconDropdown(!showCategoryIconDropdown)}
+              >
+                {selectedCategoryIcon} Select Icon
+              </button>
+              {showCategoryIconDropdown && (
+                <div className="absolute w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10 overflow-scroll ">
+                  {icons.map((icon, index) => (
                     <button
-                      onClick={() => startEdit(item)}
-                      className="text-blue-500 hover:underline"
+                      key={index}
+                      onClick={() => {
+                        setSelectedCategoryIcon(icon?.icon);
+                        setShowCategoryIconDropdown(false);
+                      }}
+                      className="w-full text-left px-4 py-2 flex items-center hover:bg-gray-200"
                     >
-                      Edit
+                      <span className="mr-2 block">{icon?.icon}</span>{icon?.label}
                     </button>
-                    <button
-                      onClick={() => deleteItem(item.id)}
-                      className="text-red-500 hover:underline"
-                    >
-                      Delete
-                    </button>
-                  </div>
+                  ))}
                 </div>
               )}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      {/* Add New Menu Item */}
-      <div className="mt-6 border-t pt-4">
-        <h2 className="text-lg font-semibold mb-2">Add menu item</h2>
-        <div className="flex space-x-2">
-          <input
-            type="text"
-            value={newLabel}
-            onChange={(e) => setNewLabel(e.target.value)}
-            placeholder="Label"
-            className="flex-1 p-2 border rounded-md"
-          />
-          <input
-            type="text"
-            value={newLink}
-            onChange={(e) => setNewLink(e.target.value)}
-            placeholder="Link"
-            className="flex-1 p-2 border rounded-md"
-          />
           <button
-            onClick={addItem}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+            onClick={handleAddCategory}
+            className="mt-2 w-full py-2 bg-blue-600 text-white rounded-lg"
           >
-            Add menu item
+            Add Category
           </button>
         </div>
-      </div>
 
-      {/* Save Button */}
-      <div className="flex justify-end mt-6">
-        <button
-          className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md cursor-not-allowed"
-          disabled
-        >
-          Save
-        </button>
+        {/* Add Subcategory Form */}
+        {categories.length > 0 && (
+          <div className="mt-6">
+            <h3 className="font-semibold text-gray-800">Add Subcategory</h3>
+            <select
+              onChange={(e) => setSelectedCategoryId(Number(e.target.value))}
+              value={selectedCategoryId || ''}
+              className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            >
+              <option value="">Select Category</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+            {selectedCategoryId !== null && (
+              <>
+                <input
+                  type="text"
+                  value={subCategoryName}
+                  onChange={(e) => setSubCategoryName(e.target.value)}
+                  placeholder="Subcategory Name"
+                  className="mt-2 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
+
+                {/* Custom Icon Selector for Subcategory */}
+                <div className="mt-2">
+                  <label className="font-semibold text-gray-800">Select Subcategory Icon:</label>
+                  <div className="relative">
+                    <button
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      onClick={() => setShowSubCategoryIconDropdown(!showSubCategoryIconDropdown)}
+                    >
+                      {selectedSubCategoryIcon} Select Icon
+                    </button>
+                    {showSubCategoryIconDropdown && (
+                      <div className="absolute w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                        {icons.map((icon, index) => (
+                          <button
+                            key={index}
+                            onClick={() => {
+                              setSelectedSubCategoryIcon(icon?.icon);
+                              setShowSubCategoryIconDropdown(false);
+                            }}
+                            className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                          >
+                            <span className="mr-2">{icon.icon}</span>{icon.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleAddSubCategory}
+                  className="mt-2 w-full py-2 bg-blue-600 text-white rounded-lg"
+                >
+                  Add Subcategory
+                </button>
+              </>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default MenuEditor;
+export default Navigation;
