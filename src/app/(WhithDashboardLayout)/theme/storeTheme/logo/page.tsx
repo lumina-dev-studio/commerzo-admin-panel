@@ -1,4 +1,4 @@
-import Logo from "@/components/Theme/StoreTheme/Logo/Logo";
+import Logo from "@/components/Theme/StoreTheme/Header/Logo/Logo";
 
 const page = () => {
   return (
