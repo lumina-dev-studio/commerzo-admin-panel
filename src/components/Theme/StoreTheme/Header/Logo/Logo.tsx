@@ -36,7 +36,7 @@ const ImageUpload = () => {
 
   const imageHandler=async()=>{
 
-    const info={logoUrl: imageFiles[imageFiles.length-1] }
+    const info={logoUrl: imageFiles[imageFiles.length-1],id:data?.data?.id }
     try {
       const updateData = await updateFunction(info).unwrap();
       if (updateData && updateData.success === true) {
@@ -52,6 +52,8 @@ const ImageUpload = () => {
 
   }
 
+  console.log(data)
+
   return (
     <div className="flex flex-col items-center h-[50%] w-[50%] mx-auto my-40">
       {imageFiles.length > 0 ? (
@@ -63,7 +65,7 @@ const ImageUpload = () => {
       ) : (
         <img
            className=" rounded-xl object-cover h-[50%] w-[50%]"
-          src={data?.data[data?.data?.length-1]?.logoUrl||
+          src={data?.data?.logoUrl||
             'https://images.pexels.com/photos/27545223/pexels-photo-27545223/free-photo-of-model-in-sweater-lying-on-grass.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
           }
           alt="Default Image"

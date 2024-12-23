@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { FaTwitter, FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaGlobe } from 'react-icons/fa';
 import { toast } from 'sonner';
-import { useCreateNumberMutation } from '@/Redux/api/Theme/StoreTheme/numberApi';
+import { useCreateNumberMutation, useGetNumberQuery } from '@/Redux/api/Theme/StoreTheme/numberApi';
 import { useCreateSocialMutation } from '@/Redux/api/Theme/StoreTheme/socialApi';
 
 const emojiOptions = [
@@ -17,7 +17,7 @@ const emojiOptions = [
 
 interface SocialAccount {
   account: string;
-  emoji: any;
+  emoji: string;  // Ensure emoji is a string
 }
 
 const NumberAndSocialLink: React.FC = () => {
@@ -30,28 +30,45 @@ const NumberAndSocialLink: React.FC = () => {
 
   const [updateNumber] = useCreateNumberMutation();
   const [updateSocial] = useCreateSocialMutation();
+  const { data: numberData, refetch: numberRefetch } = useGetNumberQuery('');
+
+  console.log(numberData?.data?.number, 'kkk');
 
   // Function to add phone number to the state and send to the server
   const addPhoneNumber = async () => {
-    if (phoneInput.trim() === '') return;
-    setPhoneNumber(phoneInput); // Only one phone number, replace the existing
-
-    try {
-      // Save the phone number to the server using Redux mutation
-      await updateNumber({ number: phoneNumber }).unwrap();  // Unwrap to get the result or error
-
-      toast.success('Phone number added successfully!');
-    } catch (error) {
-      toast.error('Failed to add phone number. Please try again.');
+    if (!phoneInput.trim()) {
+      toast.error('Phone number cannot be empty.');
+      return;
     }
 
-    setPhoneInput('');
+    console.log({ number: phoneInput, id: numberData?.data?.id });
+
+    try {
+      // Use `phoneInput` for sending data to the server
+      await updateNumber({ number: phoneInput, id: numberData?.data?.id }).unwrap();
+
+      // Update the local state
+      setPhoneNumber(phoneInput);
+
+      // Notify user and reset the input field
+      toast.success('Phone number updated successfully!');
+      setPhoneInput('');
+      numberRefetch(); // Refetch data to sync with the server
+    } catch (error) {
+      console.error('Error updating phone number:', error);
+      toast.error('Failed to update phone number. Please try again.');
+    }
   };
 
   // Function to add social account to the state
   const addSocialAccount = () => {
     if (socialInput.trim() === '') return;
-    setSocialAccounts([...socialAccounts, { account: socialInput, emoji: selectedEmoji.icon }]);
+
+    // Save the emoji label (not the object) and account to the state
+    setSocialAccounts([
+      ...socialAccounts,
+      { account: socialInput, emoji: selectedEmoji.label }
+    ]);
     setSocialInput('');
     setSelectedEmoji(emojiOptions[0]); // Reset emoji
     setSubmitVisible(true); // Show submit button once something is added
@@ -62,7 +79,7 @@ const NumberAndSocialLink: React.FC = () => {
     try {
       // Send the array of social accounts to the server using Redux mutation
       for (const account of socialAccounts) {
-        await updateSocial({ account: account.account,   emoji: `${account.emoji} ${account.account}`  }).unwrap();
+        await updateSocial({ account: `account.account`, emoji: `account.emoji` }).unwrap();
       }
 
       toast.success('Social accounts saved successfully!');
@@ -84,7 +101,7 @@ const NumberAndSocialLink: React.FC = () => {
             type="text"
             value={phoneInput}
             onChange={(e) => setPhoneInput(e.target.value)}
-            placeholder="Enter phone number"
+            placeholder={numberData?.data?.number}
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
