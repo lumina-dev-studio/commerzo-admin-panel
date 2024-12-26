@@ -70,6 +70,7 @@ const AddProduct = () => {
     data.status=status
     data.themeTemplate=themeTemplate
     data.category=category
+    data.description=description
 
     
     console.log(data,'jj')

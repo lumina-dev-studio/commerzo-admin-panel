@@ -1,5 +1,5 @@
 "use client"
-import { TableCell, TableRow } from "@/components/ui/table";
+
 import { useGetAllUsersQuery } from "@/Redux/api/User/userApi";
 import Table from "@/SharedComponent/Table/Table";
 import Skeleton from 'react-loading-skeleton'
@@ -12,7 +12,7 @@ const AllUSer = () => {
 
 
 
-  console.log(tableData?.data)
+  console.log(tableData)
   return (
     <div className=" p-5">
        <h1 className=" text-2xl font-bold my-8 ">{isLoading?<Skeleton width={100}/>: "All User"}</h1> 
