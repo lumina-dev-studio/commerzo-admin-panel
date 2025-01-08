@@ -1,5 +1,8 @@
 import SmallChart from "@/components/Chart/SmallChart/SmallChart";
-
+import {Metadata} from "next";
+export const metadata:Metadata = {
+    title: "Home",
+}
 const page = () => {
     return (
         <div>
