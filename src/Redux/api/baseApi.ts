@@ -1,4 +1,3 @@
-// import { getUserInfo } from "@/Services/Action/auth.services";
 import { getUserInfo } from "@/Services/Action/auth.service";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const baseQuery = fetchBaseQuery({
