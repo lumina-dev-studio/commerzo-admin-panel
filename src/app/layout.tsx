@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+import {Inter, Playfair} from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -10,6 +10,13 @@ import {Toaster} from "@/components/ui/sonner";
 const inter = Inter({
     subsets: ['latin'],
     variable: '--font-inter',
+});
+
+// Load Delius Swash Caps font from Google Fonts
+const playfair = Playfair({
+    subsets: ['latin'],
+    variable: '--font-playfair',
+    weight: '700',
 });
 
 // Load local fonts
@@ -34,7 +41,7 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
         <Providers>
             <html lang="en">
             <body
-                className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased bg-gray-200/80`}
+                className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased bg-[#F1F1F1]`}
             >
             <main>{children}</main>
             <Toaster/>

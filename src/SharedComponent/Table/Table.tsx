@@ -1,7 +1,6 @@
 "use client"
 
 import React, {useState} from "react";
-import SearchBar from '../SearchBar/SearchBar';
 
 import {
     Select,
@@ -64,7 +63,7 @@ const Table = ({tableHead, tableData, condition, categoryRefetch,isLoading}: any
 
                 <div className={`${condition === "AllUser" ? "col-span-9" : "col-span-7"}   `}>
                     <div className={`${condition === "AllUser" ? "w-[70%]" : "mx-auto w-[70%]"}  `}>
-                       {isLoading? <Skeleton  height={30}/>:  <SearchBar/>}
+                       {isLoading? <Skeleton  height={30}/>:  ''}
                     </div>
                 </div>
 
