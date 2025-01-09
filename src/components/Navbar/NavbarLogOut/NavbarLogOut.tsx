@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { removeFromCookies } from "@/Services/Action/auth.service";
+"use client"
+import {Button} from "@/components/ui/button";
+import {removeFromCookies} from "@/Services/Action/auth.service";
 
 
 const NavbarLogOut = () => {

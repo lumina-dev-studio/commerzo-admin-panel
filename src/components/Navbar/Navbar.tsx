@@ -1,10 +1,4 @@
-"use client";
-import NavbarChat from "./NavbarChat/NavbarChat";
-import NavbarDarkMode from "./NavbarDarkMode/NavbarDarkMode";
-import NavbarFullScreen from "./NavbarFullScreen/NavbarFullScreen";
-
 import NavbarNotification from "./NavbarNotification/NavbarNotification";
-import NavbarOption from "./NavbarOption/NavbarOption";
 import NavbarUserOption from "./NavbarUserOption/NavbarUserOption";
 import NavbarLogOut from "./NavbarLogOut/NavbarLogOut";
 import Image from "next/image";
@@ -19,16 +13,10 @@ const Navbar = () => {
                 <h1 className="text-2xl font-bold italic" style={{fontFamily: "var(--font-playfair)"}}>Commerzo</h1>
             </div>
             <Search/>
-            <div>
-                <div className="md:hidden lg:flex items-center mt-3  gap-3 ms-2">
-                    <NavbarDarkMode/>
-                    <NavbarNotification/>
-                    <NavbarChat/>
-                    <NavbarFullScreen/>
-                    <NavbarOption/>
-                    <NavbarLogOut/>
-                    <NavbarUserOption/>
-                </div>
+            <div className="md:hidden lg:flex items-center gap-3 ms-2 justify-end">
+                <NavbarNotification/>
+                <NavbarLogOut/>
+                <NavbarUserOption/>
             </div>
         </div>
     );
