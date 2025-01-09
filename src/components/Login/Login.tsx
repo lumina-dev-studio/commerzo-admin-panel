@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {FaRegEyeSlash, FaRegEye} from "react-icons/fa";
 import {toast} from "sonner"
+import LogoDark from "@/components/Global/LogoDark";
 
 interface FormData {
     email: string;
@@ -29,15 +30,19 @@ const Login: React.FC = () => {
 
     return (
         <div className="w-[90%] max-w-md p-8 shadow bg-white rounded-2xl">
-            <h1 className="text-2xl font-bold text-center" style={{fontFamily: 'var(--font-inter)'}}>
-                Login to account
+            <LogoDark/>
+            <h1 className="text-2xl font-bold mt-4" style={{fontFamily: 'var(--font-inter)'}}>
+                Log in
             </h1>
+            <p className="text-sm text-gray-600">
+                Continue to Commerzo
+            </p>
             <form className="mt-10 mb-2" onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex flex-col space-y-6">
                     <label htmlFor="email">
                         <p className="font-bold text-[14px] text-slate-700 pb-2"
                            style={{fontFamily: 'var(--font-inter)'}}>
-                            Email address <span className="text-red-500 text-bold text-10px">*</span>
+                            Email
                         </p>
                         <input
                             {...register('email', {required: "Email is required"})}
@@ -45,7 +50,7 @@ const Login: React.FC = () => {
                             id="email"
                             name="email"
                             type="email"
-                            className={`w-full py-3.5 border px-5 rounded-xl text-[14px] text-gray-600 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+                            className={`w-full py-2 border px-3 rounded-xl text-[14px] text-gray-600 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
                             placeholder="Enter email address"
                         />
                         {errors.email &&
@@ -59,18 +64,18 @@ const Login: React.FC = () => {
                         </p>
                         <div className="relative">
                             <input
-                                {...register('password', {required: "Password is required"})} // Register input with required validation
+                                {...register('password', {required: "Password is required"})}
                                 style={{fontFamily: 'var(--font-inter)'}}
                                 id="password"
                                 name="password"
-                                type={showPassword ? 'text' : 'password'} // Toggle between text and password
-                                className={`w-full py-3.5 border rounded-xl px-5 text-[14px] text-gray-600 ${errors.password ? 'border-red-500' : 'border-gray-300'}`} // Add error class
+                                type={showPassword ? 'text' : 'password'}
+                                className={`w-full py-2 border rounded-xl px-3 text-[14px] text-gray-600 ${errors.password ? 'border-red-500' : 'border-gray-300'}`} // Add error class
                                 placeholder="Enter your password"
                             />
                             <button
                                 type="button"
                                 onClick={togglePasswordVisibility}
-                                className="absolute right-3 top-3 text-gray-500"
+                                className="absolute right-3 top-2 text-gray-500"
                                 aria-label={showPassword ? 'Hide password' : 'Show password'}
                             >
                                 {showPassword ? <FaRegEye className='text-[20px]'/> :
@@ -78,7 +83,7 @@ const Login: React.FC = () => {
                             </button>
                         </div>
                         {errors.password &&
-                            <p className="text-red-500 text-sm">{errors.password.message}</p>} {/* Error message */}
+                            <p className="text-red-500 text-sm">{errors.password.message}</p>}
                     </label>
 
                     <div className="flex flex-row justify-between">
@@ -101,10 +106,9 @@ const Login: React.FC = () => {
                             </a>
                         </div>
                     </div>
-
                     <button
                         type="submit"
-                        className="w-full py-3.5 font-bold text-white text-[14px] bg-blue-500 hover:text-blue-500 hover:bg-white rounded-lg border-blue-500 border hover:border-blue-500 hover:shadow inline-flex space-x-2 items-center justify-center transition-all duration-300"
+                        className="w-full py-3.5 font-bold text-white text-[14px] bg-black hover:text-black hover:bg-white rounded-lg border-black border hover:shadow inline-flex space-x-2 items-center justify-center transition-all duration-300"
                         style={{fontFamily: 'var(--font-inter)'}}
                     >
                         <span>Login</span>

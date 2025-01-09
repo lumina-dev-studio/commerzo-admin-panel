@@ -3,7 +3,7 @@ import Login from "@/components/Login/Login";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-    title: "Login",
+    title: "Login - Commerzo",
 }
 
 const page = () => {
